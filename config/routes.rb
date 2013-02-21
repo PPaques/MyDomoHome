@@ -1,4 +1,13 @@
 MyHome::Application.routes.draw do
+  resources :openings
+
+
+  resources :rooms
+
+
+  resources :homes
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
