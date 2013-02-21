@@ -6,8 +6,9 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
       <th><%= model_class.human_attribute_name(:opened) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th>Attached Room </th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,8 +17,14 @@
     <% @openings.each do |opening| %>
       <tr>
         <td><%= link_to opening.id, opening_path(opening) %></td>
-        <td><%= opening.type %></td>
         <td><%= opening.opened %></td>
+        <td><%= opening.name %></td>
+        <td>
+          <% opening.rooms.each do |room| %>
+            <p><%= room.name %></p>
+          <% end %>
+
+          </td>
         <td><%=l opening.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

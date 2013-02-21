@@ -9,6 +9,7 @@
       <th><%= model_class.human_attribute_name(:heating) %></th>
       <th><%= model_class.human_attribute_name(:light) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:home_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -20,6 +21,7 @@
         <td><%= room.heating %></td>
         <td><%= room.light %></td>
         <td><%= room.name %></td>
+        <td><%= room.home_id %></td>
         <td><%=l room.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

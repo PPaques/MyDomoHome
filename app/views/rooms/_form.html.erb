@@ -17,6 +17,12 @@
       <%= f.text_area :name, :class => 'text_area' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :home_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :home_id, :class => 'number_field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
