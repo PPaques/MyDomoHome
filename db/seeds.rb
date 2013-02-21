@@ -28,3 +28,5 @@ Opening.create(name: "Fenêtre chambre", opened: false, rooms: [Room.find_by_nam
 Opening.create(name: "Porte cuisine", opened: false, rooms: [Room.find_by_name("Salon"), Room.find_by_name("Cuisine")] )
 Opening.create(name: "Porte chambre", opened: false, rooms: [Room.find_by_name("Salon"), Room.find_by_name("Chambre")] )
 
+User.delete_all
+User.create(name: "admin", password: "admin", email: "admin@admin.com", role: 1)
