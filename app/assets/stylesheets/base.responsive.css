@@ -1,0 +1,95 @@
+@media (max-width: 979px) {
+	.navbar .nav > li.hello {
+		display: none;
+	}
+}
+
+@media (max-width: 767px) {
+	body {
+		padding: 0;
+	}
+
+	.subnavbar-inner {
+	    height: auto;
+	}
+
+	.subnavbar .container-fluid > ul {
+    	border: medium none;
+	    height: auto;
+	    width: 100%;
+	}
+
+	.subnavbar .container-fluid > ul > li {
+	    border: medium none;
+	    height: 70px;
+	    margin-bottom: 0;
+	    width: 33%;
+	}
+
+
+	.subnavbar .container-fluid > ul > li.active > a {
+	    background: none;
+	}
+
+	aside > ul > li > a span {
+		display: none;
+	}
+
+	aside, aside > ul, aside > .nav > li [class*=" icon-"] {
+		width: 50px;
+	}
+	section {
+		margin-left: 50px;
+	}
+
+	aside > .nav > li > a:link, aside > .nav > li > a:visited {
+		padding: 10px 0;
+	}
+
+	section div.container-fluid {
+		padding: 20px;
+	}
+	aside > ul {
+		display: block;
+	}
+}
+
+@media (max-width:480px){
+	section {
+		margin: 0;
+		border-radius: 0;
+	}
+
+	aside {
+		margin: 0;
+	}
+
+	aside, aside ul {
+		position: relative;
+		width: 100%;
+	}
+
+	aside > ul > li > a span {
+		display: inline;
+	}
+
+	aside > ul {
+		display: none;
+	}
+
+	aside .toggle-submenu {
+		text-align: right;
+		padding: 5px 0;
+		background-color: #292929;
+		display: block;
+		height: 30px;
+	}
+
+	aside .nav {
+		margin-bottom: 0;
+	}
+
+	aside > .nav > li > a:link, aside > .nav > li > a:visited {
+	    padding-right: 10px;
+	}
+}
