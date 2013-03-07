@@ -1,4 +1,7 @@
 class AuthentificationController < ApplicationController
+  layout false
+
+
 
   def login
   	# Si on accède avec la méthode post, on vérifie le login
