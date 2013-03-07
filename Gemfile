@@ -7,6 +7,9 @@ gem 'rails', '3.2.12'
 
 gem 'mysql2'
 
+# Whenever is a Ruby gem that provides a clear syntax for writing and deploying cron jobs.
+gem 'whenever', :require => false
+
 
 # Gems used only for assets and not required
 # in production environments by default.
