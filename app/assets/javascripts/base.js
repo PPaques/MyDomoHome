@@ -1,9 +1,4 @@
-//Every resize of window
-$(window).resize(sizeClontent);
-
 $(document).ready(function() {
-    // Griser toute la hauteur de la zone "content"
-	sizeContent();
 
     // Graphe des mesures récentes
 	var t = (new Date()).getTime();
@@ -40,39 +35,3 @@ $(document).ready(function() {
 		$("aside .submenu-collapse").stop().slideToggle('fast');
 	});
 });
-
-function sizeContent() {
-
-	// Dynamically assign height
-    var newHeight = $(window).height() - $("header").height()- $("section").css("margin-top").replace(/\D/g, '');
-    var innerHeight = parseInt($("section .container-fluid").css("height").replace(/\D/g, '')) + parseInt($("section .container-fluid").css("padding-top").replace(/\D/g, '')) + parseInt($("section .container-fluid").css("padding-bottom").replace(/\D/g, ''));
-    if(newHeight > innerHeight ){
-    	$("section").css("height", newHeight);
-    }else{
-    	$("section").css("height", innerHeight);
-    }
-
-    // Always show submenu when width > 480px
-    if($('body').width() + scrollbar_width() > 480){
-    	if($("aside .submenu-collapse").is(':hidden'))
-    		$("aside .submenu-collapse").show();
-    }else{
-    	if($("aside .submenu-collapse").is(':visible'))
-    		$("aside .submenu-collapse").hide();
-    }
-}
-
-function scrollbar_width() {
-    if( jQuery('body').height() > jQuery(window).height()) {
-         
-        /* Modified from: http://jdsharp.us/jQuery/minute/calculate-scrollbar-width.php */
-        var calculation_content = jQuery('<div style="width:50px;height:50px;overflow:hidden;position:absolute;top:-200px;left:-200px;"><div style="height:100px;"></div>');
-        jQuery('body').append( calculation_content );
-        var width_one = jQuery('div', calculation_content).innerWidth();
-        calculation_content.css('overflow-y', 'scroll');
-        var width_two = jQuery('div', calculation_content).innerWidth();
-        jQuery(calculation_content).remove();
-        return ( width_one - width_two );
-    }
-    return 0;
-}
