@@ -21,11 +21,13 @@
   </head>
   <body>
     <div id="identification-content">
-      <i class="icon-cloud"></i><span  class="titre">MyDomoHome</span>
-      <%= bootstrap_flash %>
+      <i class="icon-cloud"></i>
+      <h1>MyDomoHome</h1>
+
       <%= yield %>
+      <footer><a href="http://www.ecam.be/">ECAM</a> - Année académique 2012-2013</footer>
     </div>
-<%= javascript_include_tag "jquery-1.9.1.min" %>
-<%= javascript_include_tag "bootstrap.min" %>
+    <%= javascript_include_tag "jquery-1.9.1.min" %>  
+    <%= javascript_include_tag "bootstrap.min" %>
   </body>
 </html>

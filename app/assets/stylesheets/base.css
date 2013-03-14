@@ -21,6 +21,15 @@ a:hover, a:focus {
     color: #DD5500;
 }
 
+.btn, a.btn:link, a.btn:visited, a.btn {
+    color: #333333;
+}
+
+.btn-danger, a.btn-danger, a.btn-danger:link, a.btn-danger:visited, .btn-primary, a.btn-primary, a.btn-primary:link, a.btn-primary:visited {
+    color:#FFFFFF;
+}
+
+
 .btn-primary, .btn-primary:visited, .btn-primary:link {
     background-color: #DD8800;
     background-repeat: repeat-x;
@@ -37,8 +46,9 @@ a:hover, a:focus {
 
 }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
     background-color: #DD8800;
+    background-color: #FF0000;
 }
 
 textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input{
@@ -582,6 +592,6 @@ div.interrupteur input[type=checkbox] {
     background-color:#444;
     position:absolute;
     width:100%;
-    height:100px;
+    height:15px;
 }
 
