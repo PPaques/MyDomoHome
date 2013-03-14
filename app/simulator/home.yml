@@ -1,0 +1,17 @@
+home:
+  temperature:
+    Extérieur: -5
+    Salon: 20
+    Cuisine: 18
+    Chambre: 25
+
+  opening_sates:
+    Porte entrée: open
+    Fenêtre gauche: open
+    Fenêtre droite: closed
+    Fenêtre cuisine: closed
+    Fenêtre chambre: open
+    Porte cuisine: open
+    Porte chambre: closed
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221105458) do
+ActiveRecord::Schema.define(:version => 20130314002342) do
 
   create_table "homes", :force => true do |t|
     t.boolean  "mode_auto"
@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(:version => 20130221105458) do
     t.boolean  "heating"
     t.boolean  "light"
     t.text     "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "home_id"
+    t.float    "temperature"
   end
 
   create_table "users", :force => true do |t|
