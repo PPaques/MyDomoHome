@@ -1,0 +1,38 @@
+<h1>Simulator</h1>
+<p>The simulator admit you to force to change a temperature.</p>
+
+
+<%= form_tag 'simulator', method: :post, class: "form-horizontal" %>
+
+  <h2>Temperatures </h2>
+    <% @rooms.each do |room| %>
+      <div class="control-group">
+        <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>
+        <div class="controls">
+          <%= number_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
+        </div>
+      </div>
+    <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag "Save" %>
+    </div>
+  </div>
+
+  <h2>Openings</h2>
+    <% @openings.each do |opening| %>
+      <div class="control-group">
+        <label class="control-label" for="opening_<%= opening.id%>"><%= opening.name %></label>
+        <div class="controls">
+          <%= select_tag "opening_#{opening.id}", "<option#{' selected="selected"' if opening.opened}>open</option><option#{' selected="selected"' unless opening.opened}>closed</option>".html_safe %>
+        </div>
+      </div>
+    <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag "Save" %>
+    </div>
+  </div>
+</form>

@@ -16,6 +16,7 @@ MyHome::Application.routes.draw do
 
   resources :accueil
 
+  resources :simulator
 
 
   # The priority is based upon order of creation:

@@ -1,5 +1,5 @@
 class AccueilController < ApplicationController
-  # GET /users
+  # GET /accueil
   def index
     respond_to do |format|
       format.html # index.html.erb
