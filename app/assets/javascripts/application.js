@@ -11,7 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 // retirer le ! pour réactiver les fichiers
-//= !require jquery
-//= !require jquery_ujs
+//= require jquery
+//= require jquery_ujs
 //= !require twitter/bootstrap
-//= !require_tree .
+//= require bootstrap.min
+//= require flot
+//= require flot.time
+//= require base

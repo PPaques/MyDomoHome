@@ -6,7 +6,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title><%= content_for?(:title) ? yield(:title) : "MyDomoHome" %></title>
     <%= csrf_meta_tags %>
-
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -42,9 +41,7 @@
     <div class="subnavbar-inner">
       <div class="container-fluid">
         <ul class="mainnav">
-          <li>
-            <%= link_to(raw("<i class=\"icon-home\"></i><span>Home</span>"), root_path) %>
-          </li>
+          <%= tab_link_to raw("<i class=\"icon-home\"></i><span>Home</span>"), root_path, params[:controller] == 'accueil'  %>
           <li>
             <a href="#">
               <i class="icon-bar-chart"></i>
@@ -63,12 +60,8 @@
               <span>Consignes</span>
             </a>            
           </li>
-          <li>
-            <%= link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), homes_path  %>
-          </li>
-          <li>
-            <%= link_to raw("<i class=\"icon-cogs\"></i><span>Utilisateurs</span>"), users_path  %>
-          </li>
+          <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), homes_path, params[:controller] == 'homes'  %>
+          <%= tab_link_to raw("<i class=\"icon-group\"></i><span>Utilisateurs</span>"), users_path, params[:controller] == 'users'  %>
         </ul>
       </div> <!-- /container -->
     </div> <!-- /subnavbar-inner -->
@@ -103,11 +96,11 @@
     <footer><a href="http://www.ecam.be/">ECAM</a> - Année académique 2012-2013</footer>
   </div>
 </section>
-<%= javascript_include_tag "jquery-1.9.1.min" %>
-<%= javascript_include_tag "bootstrap.min" %>
-<%= javascript_include_tag "excanvas.min" %>
-<%= javascript_include_tag "flot" %>
-<%= javascript_include_tag "flot.time" %>
+
+<!--[if IE]><%= javascript_include_tag "excanvas" %><![endif]-->
+<%= javascript_include_tag "application" %>
+<!--
 <%= javascript_include_tag "base" %>
+-->
   </body>
 </html>
