@@ -26,7 +26,7 @@
         <a class="btn btn-inverse btn-collapse btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-user"></span>
         </a>
-        <a class="brand" href="./"><i class="icon-cloud"></i><span>MyDomoHome</span></a>    
+        <%= link_to(raw("<i class=\"icon-cloud\"></i><span>MyDomoHome</span>"), root_path, :class => "brand") %>
         <div class="nav-collapse">
           <ul class="nav pull-right">
             <li class="hello"><span>Bonjour <%= session[:user]%></span></li>
@@ -42,11 +42,8 @@
     <div class="subnavbar-inner">
       <div class="container-fluid">
         <ul class="mainnav">
-          <li class="active">
-            <a href="#">
-              <i class="icon-home"></i>
-              <span>Home</span>
-            </a>              
+          <li>
+            <%= link_to(raw("<i class=\"icon-home\"></i><span>Home</span>"), root_path) %>
           </li>
           <li>
             <a href="#">
@@ -67,16 +64,10 @@
             </a>            
           </li>
           <li>
-            <a href="#">
-              <i class="icon-cogs"></i>
-              <span>Configuration</span>
-            </a>            
+            <%= link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), homes_path  %>
           </li>
           <li>
-            <a href="#">
-              <i class="icon-group"></i>
-              <span>Utilisateurs</span>
-            </a>            
+            <%= link_to raw("<i class=\"icon-cogs\"></i><span>Utilisateurs</span>"), users_path  %>
           </li>
         </ul>
       </div> <!-- /container -->

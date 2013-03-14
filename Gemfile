@@ -2,13 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
-
-# Whenever is a Ruby gem that provides a clear syntax for writing and deploying cron jobs.
-gem 'whenever', :require => false
+# to use a worker to get states periodicly
+gem 'clockwork', "~> 0.5.0"
+gem 'tzinfo', "~> 0.3.35"
+# to run the worker like a daemon
+gem 'daemons'
 
 
 # Gems used only for assets and not required
@@ -26,17 +25,10 @@ end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Deploy with Capistrano
-# gem 'capistrano'
+group :development, :test do
+  gem 'capistrano'
+  gem 'capistrano_colors'
+  gem 'better_errors'
+end
 
-# To use debugger
-# gem 'debugger'
