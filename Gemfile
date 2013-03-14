@@ -3,8 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 
 gem 'mysql2'
-gem "clockwork", "~> 0.5.0"
+# to use a worker to get states periodicly
+gem 'clockwork', "~> 0.5.0"
 gem 'tzinfo', "~> 0.3.35"
+# to run the worker like a daemon
+gem 'daemons'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
