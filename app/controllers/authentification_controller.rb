@@ -1,7 +1,5 @@
 class AuthentificationController < ApplicationController
-  layout false
-
-
+  layout "identification"
 
   def login
   	# Si on accède avec la méthode post, on vérifie le login
@@ -19,7 +17,9 @@ class AuthentificationController < ApplicationController
 			# On redirige dans tous les cas pour que l'utilisateur ne puisse pas reposter en rafraichissant la page.
 			redirect_to :controller => "authentification", :action => "login"
 		end
-	end
+
+	 end
+
   end
 
   def logout
