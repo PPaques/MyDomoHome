@@ -1,26 +1,25 @@
 body {
 	background: #444;
+	color: white;
+	text-shadow: -1px -1px 0 #000000;
 }
 
-.titre {
+h1 {
 	font-size: 250%;
 	color: white;
 	text-align:center;
-
-}
-h1{
-		color:#FFFFFF;
-
+	color:#FFFFFF;
+	margin-top: -20px;
 }
 
 .icon-cloud {
-	font-size: 20em;
+	font-size: 15em;
 	text-align: center;
-	color: white;
+	color: #FFFFFF;
 }
 
 #identification-content {
-	margin: 0 auto;
+	margin: 50px auto 0;
 	width: 320px;
 	text-align: center;
 }
@@ -29,10 +28,32 @@ h1{
 		text-align: center;
 		vertical-align: center;
 }
-p{
-	color: white;
-}
 
 label{
 	color: white;
+}
+
+input.btn {
+	}
+
+input, input[type="text"], input[type="password"], input.btn {
+	width: 260px;
+	margin-bottom: 15px;
+	padding: 5px;
+}
+
+button.btn, input.btn[type="submit"] {
+	width: 270px;
+}
+
+footer {
+	font-size: 0.9em;
+	margin-top: -20px;
+	color: #DDDDDD;
+	text-shadow: none;
+}
+
+footer a:link, footer a:visited {
+	color: #DDDDDD;
+	text-shadow: none;
 }
