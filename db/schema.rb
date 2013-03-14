@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314002342) do
+ActiveRecord::Schema.define(:version => 20130314094327) do
+
+  create_table "history", :force => true do |t|
+    t.integer  "opening_id"
+    t.integer  "room_id"
+    t.integer  "home_id"
+    t.float    "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "homes", :force => true do |t|
     t.boolean  "mode_auto"

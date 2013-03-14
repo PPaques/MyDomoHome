@@ -1,0 +1,38 @@
+body {
+	background: #444;
+}
+
+.titre {
+	font-size: 250%;
+	color: white;
+	text-align:center;
+
+}
+h1{
+		color:#FFFFFF;
+
+}
+
+.icon-cloud {
+	font-size: 20em;
+	text-align: center;
+	color: white;
+}
+
+#identification-content {
+	margin: 0 auto;
+	width: 320px;
+	text-align: center;
+}
+
+.texte{
+		text-align: center;
+		vertical-align: center;
+}
+p{
+	color: white;
+}
+
+label{
+	color: white;
+}

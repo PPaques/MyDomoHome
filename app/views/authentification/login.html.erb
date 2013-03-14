@@ -1,9 +1,8 @@
-<h1>Login</h1>
 <p>You need to login to access this DomoHouse (username = admin; password = admin)</p>
 <%= form_tag do %>
   <%= label_tag(:name, "Username") %>
   <%= text_field_tag(:name) %>
   <%= label_tag(:password, "Password") %>
   <%= password_field_tag(:password) %>
-  <%= submit_tag("Login", :class => "btn btn-primary") %>
+  <p><%= submit_tag("Login", :class => "btn btn-primary") %></p>
 <% end %>
