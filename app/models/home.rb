@@ -11,6 +11,8 @@ class Home < ActiveRecord::Base
       # Here goes the code for getting the data from all the GPIO 
     
     else
+      # NO MORE USED
+
       # Here goes the code for getting the data from the yaml file in app/simulator/home.yml
       new_opening_state = YAML::load(File.read(Rails.root.join("app", "simulator","home.yml")))
       # lets make a while on the opening states
