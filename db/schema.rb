@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328090245) do
+ActiveRecord::Schema.define(:version => 20130328101038) do
 
   create_table "heating_logs", :force => true do |t|
     t.integer  "room_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130328090245) do
     t.datetime "updated_at",  :null => false
     t.integer  "home_id"
     t.float    "temperature"
+    t.boolean  "isoutside"
   end
 
   create_table "temperature_measures", :force => true do |t|

@@ -11,7 +11,7 @@ Home.delete_all
 Home.create(mode_auto: true)
 
 Room.delete_all
-Room.create(name: "Extérieur", heating: false, light: false, home: Home.first)
+Room.create(name: "Extérieur", heating: false, light: false, home: Home.first, isoutside: true)
 Room.create(name: "Salon", heating: false, light: false, home: Home.first)
 Room.create(name: "Cuisine", heating: false, light: false, home: Home.first)
 Room.create(name: "Chambre", heating: false, light: false, home: Home.first)
@@ -33,3 +33,5 @@ User.create(name: "admin", password: "admin", email: "admin@admin.com", role: 1)
 
 TemperatureMeasure.delete_all
 OpeningMeasure.delete_all
+
+HeatingLog.delete_all
