@@ -9,28 +9,6 @@ class Home < ActiveRecord::Base
   def update_opening_state
     if Rails.env.production?
       # Here goes the code for getting the data from all the GPIO 
-    
-    else
-      # NO MORE USED
-
-      # Here goes the code for getting the data from the yaml file in app/simulator/home.yml
-      new_opening_state = YAML::load(File.read(Rails.root.join("app", "simulator","home.yml")))
-      # lets make a while on the opening states
-      new_opening_state['home']['opening_sates'].each do |new_opening|
-  
-        # lets take the opening
-        opening = openings.find_by_name(new_opening[0])
-
-        # saving status
-        if new_opening[1] == "closed"
-          opening.opened = false
-        else 
-          opening.opened = true
-        end
-
-        # saving in database if there is change
-        opening.save! 
-      end
     end
 
   end
@@ -38,18 +16,22 @@ class Home < ActiveRecord::Base
   def update_temperature
     if Rails.env.production?
       # Here goes the code for getting the data from all the I2C
-    
-    else
-      # Here goes the code for getting the data from the yaml file in app/simulator/home.yml
-      new_opening_state = YAML::load(File.read(Rails.root.join("app", "simulator","home.yml")))
-      # lets make a while on the opening states
-      new_opening_state['home']['temperature'].each do |new_temperature|
-  
-        # lets take the room
-        room = rooms.find_by_name(new_temperature[0])
-        room.temperature = new_temperature[1].to_f
-        # saving in database if there is change
-        room.save! 
+    end
+  end
+
+  # ROUTINE DE REGULATION
+  def update_regulation
+    # On passe en revue chaque pièce
+    # Si la température est inférieure à la consigne, il faut (peut être) activer le chauffage
+    # -> Si il existe un chemin jusqu'à l'extérieur, on stoppe le chauffage !
+    # -> Si il existe des connexions entre les pièces et que une pièce doit être moins froide que la pièce, on stoppe le chauffage !
+    # -> Sinon on chauffe
+    consigne = 18
+    self.rooms.each do |room|
+      if room.temperature < (consigne - 0.5)
+        puts "On chauffe : " + room.name + " " + room.temperature.to_s
+      else
+        # puts room.name + " :   à la température actuelle (" + room.temperature.to_s + "°c). On chauffe pas ! "
       end
     end
   end

@@ -30,3 +30,6 @@ Opening.create(name: "Porte chambre", opened: false, rooms: [Room.find_by_name("
 
 User.delete_all
 User.create(name: "admin", password: "admin", email: "admin@admin.com", role: 1)
+
+TemperatureMeasure.delete_all
+OpeningMeasure.delete_all
