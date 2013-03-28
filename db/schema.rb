@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130328103519) do
     t.datetime "updated_at",  :null => false
     t.integer  "home_id"
     t.float    "temperature"
+    t.boolean  "isoutside"
   end
 
   create_table "temperature_measures", :force => true do |t|
