@@ -3,4 +3,6 @@ class HeatingLog < ActiveRecord::Base
 
   belongs_to :room, inverse_of: :heating_logs
 
+  default_scope :order => "created_at DESC"
+
 end
