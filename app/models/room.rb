@@ -7,6 +7,7 @@ class Room < ActiveRecord::Base
   has_many :heating_logs, inverse_of: :room
 
   after_save :save_temperature_measure
+  after_save :save_heating_log
 
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
@@ -16,6 +17,12 @@ class Room < ActiveRecord::Base
   def save_temperature_measure
     if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature) > DELTA)
       temperature_measures.create(temperature: self.temperature)
+    end
+  end
+
+  def save_heating_log
+    if heating_logs.last.nil? or ( heating_changed? )
+      heating_logs.create(heating: self.heating)
     end
   end
 
