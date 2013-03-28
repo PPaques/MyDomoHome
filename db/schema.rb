@@ -28,16 +28,16 @@ ActiveRecord::Schema.define(:version => 20130327201236) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "openings", :force => true do |t|
+  create_table "opening_measures", :force => true do |t|
+    t.integer  "opening_id"
     t.boolean  "opened"
-    t.text     "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "openings_measures", :force => true do |t|
-    t.integer  "opening_id"
+  create_table "openings", :force => true do |t|
     t.boolean  "opened"
+    t.text     "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

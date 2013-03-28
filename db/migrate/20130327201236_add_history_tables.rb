@@ -7,7 +7,7 @@ class AddHistoryTables < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :openings_measures do |t|
+    create_table :opening_measures do |t|
       t.integer :opening_id
       t.boolean :opened
 
