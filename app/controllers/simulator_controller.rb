@@ -12,12 +12,12 @@ class SimulatorController < ApplicationController
   def create     
     params.each do |type,data| 
       if type.match(/temperature_/)
-        logger.info type.gsub(/temperature_/,'')
+        #logger.info type.gsub(/temperature_/,'')
         Room.find_by_id(type.gsub(/temperature_/,'')).update_attributes(temperature: data)
       end
 
       if type.match(/opening_/)
-        logger.info type.gsub(/opening_/,'')
+        #logger.info type.gsub(/opening_/,'')
         Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: true) if data == "open"
         Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: false) if data == "closed"
       end
