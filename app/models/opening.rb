@@ -1,8 +1,9 @@
 class Opening < ActiveRecord::Base
-  attr_accessible :opened, :type, :name, :rooms
+  attr_accessible :opened, :type, :name, :rooms, :home
 
   has_and_belongs_to_many :rooms
   has_many :opening_measures, inverse_of: :opening
+  belongs_to :home
 
   after_save :save_opening_measure
 
