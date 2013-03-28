@@ -4,7 +4,7 @@ class Opening < ActiveRecord::Base
   has_and_belongs_to_many :rooms
   has_many :opening_measures, inverse_of: :opening
 
-  before_save :save_opening_measure
+  after_save :save_opening_measure
 
   private
 

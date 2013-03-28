@@ -5,7 +5,7 @@ class Room < ActiveRecord::Base
   has_and_belongs_to_many :openings
   has_many :temperature_measures, inverse_of: :room
 
-  before_save :save_temperature_measure
+  after_save :save_temperature_measure
 
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5 
