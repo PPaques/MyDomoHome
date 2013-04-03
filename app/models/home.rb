@@ -2,13 +2,13 @@ class Home < ActiveRecord::Base
   attr_accessible :mode_auto
 
   has_many :rooms, inverse_of: :home
-  has_many :openings, through: :rooms
+  has_many :openings
 
   require 'yaml'
 
   def update_opening_state
     if Rails.env.production?
-      # Here goes the code for getting the data from all the GPIO 
+      # Here goes the code for getting the data from all the GPIO
     end
 
   end
