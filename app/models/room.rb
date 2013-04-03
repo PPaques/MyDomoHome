@@ -29,4 +29,16 @@ class Room < ActiveRecord::Base
     end
   end
 
+  public
+
+  def is_connected_outside
+    self.openings.each do |opening|
+      # Si l'ouverture est ouverte
+      if opening.opened? 
+        opening.rooms.each do |opening|
+      end
+    end
+    return true
+  end
+
 end

@@ -32,16 +32,16 @@ class Home < ActiveRecord::Base
     
     # On parcours chaque pièce
     self.rooms.each do |room|
+      # Si la pièce est l'extérieur, on passe à la suivante !
+      if room.isoutside?
+        next
+      end
+
 
       # On compare la température de la pièce et la consigne
       if room.temperature < (consigne - consigne_hysteresis)
+        puts room.is_connected_outside
         # Si la température est trop basse, on vérifie d'abord si des fenêtres sont ouvertes
-        room.openings.each do |opening|
-          # Si l'ouverture est ouverte
-          # if opening.opened? 
-          # end
-
-        end
 
         puts room.name + " : Consigne ("+consigne.to_s+") > temperature actuelle ("+room.temperature.to_s+") => on chauffe !"
       else
