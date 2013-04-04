@@ -21,8 +21,7 @@ class Home < ActiveRecord::Base
 
   # ROUTINE DE REGULATION
   def update_regulation
-    puts ""
-    consigne = 18.0
+    consigne = 100.0
     consigne_hysteresis = 0.5
     # On passe en revue chaque pièce
     # Si la température est inférieure à la consigne, il faut (peut être) activer le chauffage
@@ -37,15 +36,22 @@ class Home < ActiveRecord::Base
         next
       end
 
-
+      puts "\n" + room.name + " (" + room.temperature.to_s + " deg - Chauffage " + (room.heating == true ? "ON" : "OFF") + ")"
       # On compare la température de la pièce et la consigne
       if room.temperature < (consigne - consigne_hysteresis)
-        puts room.is_connected_outside
-        # Si la température est trop basse, on vérifie d'abord si des fenêtres sont ouvertes
-
-        puts room.name + " : Consigne ("+consigne.to_s+") > temperature actuelle ("+room.temperature.to_s+") => on chauffe !"
+        puts "    Lien vers l'exterieur ?"
+        print "        " + room.name
+        if room.is_connected_outside([])
+          room.update_attributes(heating: false)
+          puts "    => Ouverture vers l'exterieur : on ne chauffe pas"
+        else
+          # Si la température est trop basse, on vérifie d'abord si des fenêtres sont ouvertes
+          room.update_attributes(heating: true)
+          puts "    => Consigne ("+consigne.to_s+") > temperature actuelle ("+room.temperature.to_s+") : on chauffe !"
+        end
       else
-        puts room.name + " : Consigne ("+consigne.to_s+") < temperature actuelle ("+room.temperature.to_s+") => on chauffe pas "
+        room.update_attributes(heating: false)
+        puts "    => Consigne ("+consigne.to_s+") < temperature actuelle ("+room.temperature.to_s+") : on ne chauffe pas"
       end
     end
     puts ""

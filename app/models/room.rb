@@ -31,14 +31,29 @@ class Room < ActiveRecord::Base
 
   public
 
-  def is_connected_outside
+  def is_connected_outside(visited)
+    # On parcours chaque ouverture de la pièce
     self.openings.each do |opening|
       # Si l'ouverture est ouverte
       if opening.opened? 
-        #opening.rooms.each do |opening|
+        # On parcours les pièces connectées
+        opening.rooms.each do |room|
+          # Si la pièce connectée est l'extérieur, on renvoie true
+          if room.isoutside?
+            puts " -> Exterieur !"
+            return true
+          # Sinon, si la pièce n'a pas encore été visitée, on vérifie si la pièce suivante est connectée à l'extérieur
+          elsif !visited.include?(room)
+            print " -> " + room.name
+            if room.is_connected_outside(visited << room)
+              return true
+            end
+          end
+        end
       end
     end
-    return true
+    puts ""
+    return false
   end
 
 end
