@@ -4,20 +4,20 @@ class Home < ActiveRecord::Base
   has_many :rooms, inverse_of: :home
   has_many :openings
 
-  require 'yaml'
+  # require 'yaml'
 
-  def update_opening_state
-    if Rails.env.production?
-      # Here goes the code for getting the data from all the GPIO
-    end
+  # def update_opening_state
+  #   if Rails.env.production?
+  #     # Here goes the code for getting the data from all the GPIO
+  #   end
 
-  end
+  # end
 
-  def update_temperature
-    if Rails.env.production?
-      # Here goes the code for getting the data from all the I2C
-    end
-  end
+  # def update_temperature
+  #   if Rails.env.production?
+  #     # Here goes the code for getting the data from all the I2C
+  #   end
+  # end
 
   # ROUTINE DE REGULATION
   def update_regulation

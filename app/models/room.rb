@@ -35,7 +35,7 @@ class Room < ActiveRecord::Base
     self.openings.each do |opening|
       # Si l'ouverture est ouverte
       if opening.opened? 
-        opening.rooms.each do |opening|
+        #opening.rooms.each do |opening|
       end
     end
     return true
