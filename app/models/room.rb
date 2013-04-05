@@ -12,25 +12,6 @@ class Room < ActiveRecord::Base
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
 
-  private
-
-  def save_temperature_measure
-    if self.temperature.nil? 
-      self.temperature = 0
-    end
-    if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature) > DELTA)
-      temperature_measures.create(temperature: self.temperature)
-    end
-  end
-
-  def save_heating_log
-    if heating_logs.last.nil? or ( heating_changed? )
-      heating_logs.create(heating: self.heating)
-    end
-  end
-
-  public
-
   def is_connected_outside(visited)
     # On parcours chaque ouverture de la pièce
     self.openings.each do |opening|
@@ -55,5 +36,23 @@ class Room < ActiveRecord::Base
     puts ""
     return false
   end
+
+  private
+
+  def save_temperature_measure
+    if self.temperature.nil? 
+      self.temperature = 0
+    end
+    if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature) > DELTA)
+      temperature_measures.create(temperature: self.temperature)
+    end
+  end
+
+  def save_heating_log
+    if heating_logs.last.nil? or ( heating_changed? )
+      heating_logs.create(heating: self.heating)
+    end
+  end
+
 
 end

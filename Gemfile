@@ -4,11 +4,11 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2'
 # to use a worker to get states periodicly
-gem 'clockwork', "~> 0.5.0"
-gem 'tzinfo', "~> 0.3.35"
+gem 'clockwork',  "~> 0.5.0"
+gem 'tzinfo',     "~> 0.3.35"
 # to run the worker like a daemon
 gem 'daemons'
-
+gem 'i2c',        "~> 0.2.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,9 +18,6 @@ group :assets do
   gem "twitter-bootstrap-rails"
   # to precompile assets faster
   gem 'turbo-sprockets-rails3'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end

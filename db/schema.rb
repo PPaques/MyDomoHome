@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328103519) do
+ActiveRecord::Schema.define(:version => 20130404152722) do
 
   create_table "heating_logs", :force => true do |t|
     t.integer  "room_id"
@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(:version => 20130328103519) do
   create_table "openings", :force => true do |t|
     t.boolean  "opened"
     t.text     "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "home_id"
+    t.integer  "gpio_number"
   end
 
   create_table "openings_rooms", :id => false, :force => true do |t|
