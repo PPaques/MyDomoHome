@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Room:</b>
+  <%= @setpoint.room_id %>
+</p>
+
+<p>
+  <b>Temperature:</b>
+  <%= @setpoint.temperature %>
+</p>
+
+<p>
+  <b>Times:</b>
+  <%= @setpoint.times %>
+</p>
+
+<p>
+  <b>Day:</b>
+  <%= @setpoint.day %>
+</p>
+
+
+<%= link_to 'Edit', edit_setpoint_path(@setpoint) %> |
+<%= link_to 'Back', setpoints_path %>

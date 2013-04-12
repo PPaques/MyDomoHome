@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327201236) do
+ActiveRecord::Schema.define(:version => 20130408095044) do
 
   create_table "history", :force => true do |t|
     t.integer  "opening_id"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(:version => 20130327201236) do
     t.datetime "updated_at",  :null => false
     t.integer  "home_id"
     t.float    "temperature"
+  end
+
+  create_table "setpoints", :force => true do |t|
+    t.integer  "room_id"
+    t.float    "temperature"
+    t.time     "times"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "day"
   end
 
   create_table "temperature_measures", :force => true do |t|

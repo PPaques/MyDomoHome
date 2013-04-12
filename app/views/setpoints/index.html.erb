@@ -1,0 +1,28 @@
+<h1>Listing setpoints</h1>
+
+<table>
+  <tr>
+    <th>Room</th>
+    <th>Temperature</th>
+    <th>Times</th>
+    <th>Day</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @setpoints.each do |setpoint| %>
+  <tr>
+    <td><%= setpoint.room_id %></td>
+    <td><%= setpoint.temperature %></td>
+    <td><%= setpoint.times.strftime("%H:%M") %></td>
+    <td><%= setpoint.day %></td>
+    <td><%= link_to 'Show', setpoint %></td>
+    <td><%= link_to 'Edit', edit_setpoint_path(setpoint) %></td>
+    <td><%= link_to 'Destroy', setpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Setpoint', new_setpoint_path %>
