@@ -17,4 +17,5 @@
 //= require bootstrap.min
 //= require flot
 //= require flot.time
+//= require jquery_nested_form
 //= require base

@@ -3,24 +3,30 @@
 				<div class="widget">
 					<div class="widget-header"><i class="icon-bookmark"></i><h3>État actuel</h3></div>
 					<div class="widget-content">
-						<% @home.rooms.each do |room| %>
-							<div class="piece">
-								<h4><%= room.name %></h4>
-									<%= "<span class=\"consigne\">#{room.consigne}°C </span>".html_safe unless room.isoutside? %>
+						<%= nested_form_for @home do |f| %>	
+							<% index = 0 %>
+							<%= f.fields_for :rooms do |room| %>
+								<div class="piece">
+									<h4><%= @home.rooms[index].name %></h4>
+									<%= "<span class=\"consigne\">#{@home.rooms[index].consigne}°C </span>".html_safe unless @home.rooms[index].isoutside? %>
 									<span class="temperature">
-										<%= room.temperature %>°C 
-										<%= '<i class="icon-caret-up"></i>'.html_safe if room.heating and !room.isoutside? %>
-										<%= '<i class="icon-caret-down"></i>'.html_safe if !room.heating and !room.isoutside? %>
+										<%= @home.rooms[index].temperature %>°C 
+										<%= '<i class="icon-caret-up"></i>'.html_safe if @home.rooms[index].heating and !@home.rooms[index].isoutside? %>
+										<%= '<i class="icon-caret-down"></i>'.html_safe if !@home.rooms[index].heating and !@home.rooms[index].isoutside? %>
 									</span>
-								  <% if !room.isoutside? %>
+									<% if !@home.rooms[index].isoutside? %>
 										<div class="interrupteur">
-											<input type="checkbox" <%= 'disabled="disabled"' if Home.first.mode_auto %> <%= 'checked="checked"' if room.heating %>  id="temp_'<%= room.id %>'" name="temp_'<%= room.id %>'" />
-											<label for="temp_'<%= room.id %>'"></label>
-										</div>
+											<%= room.check_box :heating, :class => 'check_box', :disabled => true if @home.mode_auto%>
+											<%= room.check_box :heating, :class => 'check_box' unless @home.mode_auto%>
+									    <%= room.label :heating, '.' %>
+											</div>
 									<% end %>
-							</div>
-						<% end  %>
+								</div>
+							  <% index += 1 %>
+							<% end  %>
 
+							<%= f.submit "Update", :class => 'btn btn-primary pull-right' %>
+						<% end %>
 					</div>
 				</div>
 			</div>

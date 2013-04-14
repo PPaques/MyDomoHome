@@ -9,6 +9,7 @@ gem 'tzinfo',     "~> 0.3.35"
 # to run the worker like a daemon
 gem 'daemons'
 gem 'i2c',        "~> 0.2.0"
+gem "nested_form"
 
 # Gems used only for assets and not required
 # in production environments by default.
