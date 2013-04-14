@@ -6,16 +6,18 @@
 						<% @home.rooms.each do |room| %>
 							<div class="piece">
 								<h4><%= room.name %></h4>
-									<span class="consigne">22.0°C </span>
+									<%= "<span class=\"consigne\">#{room.consigne}°C </span>".html_safe unless room.isoutside? %>
 									<span class="temperature">
 										<%= room.temperature %>°C 
-										<%= '<i class="icon-caret-up"></i>'.html_safe if room.heating %>
-										<%= '<i class="icon-caret-down"></i>'.html_safe if !room.heating %>
+										<%= '<i class="icon-caret-up"></i>'.html_safe if room.heating and !room.isoutside? %>
+										<%= '<i class="icon-caret-down"></i>'.html_safe if !room.heating and !room.isoutside? %>
 									</span>
-								<div class="interrupteur">
-									<input type="checkbox" <%= 'disabled="disabled"' if Home.first.mode_auto %> <%= 'checked="checked"' if room.heating %>  id="temp_'<%= room.id %>'" name="temp_'<%= room.id %>'" />
-									<label for="temp_'<%= room.id %>'"></label>
-								</div>
+								  <% if !room.isoutside? %>
+										<div class="interrupteur">
+											<input type="checkbox" <%= 'disabled="disabled"' if Home.first.mode_auto %> <%= 'checked="checked"' if room.heating %>  id="temp_'<%= room.id %>'" name="temp_'<%= room.id %>'" />
+											<label for="temp_'<%= room.id %>'"></label>
+										</div>
+									<% end %>
 							</div>
 						<% end  %>
 

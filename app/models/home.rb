@@ -14,6 +14,14 @@ class Home < ActiveRecord::Base
     end
   end
 
+  def update_heatings_state
+    if Rails.env.production?
+      rooms.each do |room|
+        room.update_heating_state
+      end
+    end
+  end
+
   def update_temperature
     if Rails.env.production? and false
       # need the card to test that ...
@@ -73,7 +81,6 @@ class Home < ActiveRecord::Base
 
   # ROUTINE DE REGULATION
   def update_regulation
-    consigne = 100.0
     consigne_hysteresis = 0.5
     # On passe en revue chaque pièce
     # Si la température est inférieure à la consigne, il faut (peut être) activer le chauffage
@@ -90,7 +97,7 @@ class Home < ActiveRecord::Base
 
       puts "\n" + room.name + " (" + room.temperature.to_s + " deg - Chauffage " + (room.heating == true ? "ON" : "OFF") + ")"
       # On compare la température de la pièce et la consigne
-      if room.temperature < (consigne - consigne_hysteresis)
+      if room.temperature < (room.consigne - consigne_hysteresis)
         puts "    Lien vers l'exterieur ?"
         print "        " + room.name
         if room.is_connected_outside([])
@@ -99,11 +106,11 @@ class Home < ActiveRecord::Base
         else
           # Si la température est trop basse, on vérifie d'abord si des fenêtres sont ouvertes
           room.update_attributes(heating: true)
-          puts "    => Consigne ("+consigne.to_s+") > temperature actuelle ("+room.temperature.to_s+") : on chauffe !"
+          puts "    => Consigne ("+room.consigne.to_s+") > temperature actuelle ("+room.temperature.to_s+") : on chauffe !"
         end
       else
         room.update_attributes(heating: false)
-        puts "    => Consigne ("+consigne.to_s+") < temperature actuelle ("+room.temperature.to_s+") : on ne chauffe pas"
+        puts "    => Consigne ("+room.consigne.to_s+") < temperature actuelle ("+room.temperature.to_s+") : on ne chauffe pas"
       end
     end
     puts ""
