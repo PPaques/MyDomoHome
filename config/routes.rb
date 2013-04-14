@@ -18,6 +18,8 @@ MyHome::Application.routes.draw do
 
   resources :simulator
 
+  resources :parameters
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

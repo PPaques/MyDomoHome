@@ -60,7 +60,7 @@
               <span>Consignes</span>
             </a>            
           </li>
-          <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), homes_path, params[:controller] == 'homes'  %>
+          <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), parameters_path, params[:controller] == 'homes'  %>
           <%= tab_link_to raw("<i class=\"icon-group\"></i><span>Utilisateurs</span>"), users_path, params[:controller] == 'users'  %>
           <%= tab_link_to raw("<i class=\"icon-fire\"></i><span>Simulator</span>"), simulator_index_path, params[:controller] == 'simulator'  %>
         </ul>

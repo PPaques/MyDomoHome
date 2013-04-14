@@ -7,7 +7,8 @@ class Opening < ActiveRecord::Base
 
   after_save :save_opening_measure
 
-  def initialize
+  def after_initialize
+    @my_cache = {}
     if Rails.env.production?
       @gpio = Gpio.new(:pin => :gpio_number, :direction => :in)
     end

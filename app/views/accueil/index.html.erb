@@ -3,41 +3,29 @@
 				<div class="widget">
 					<div class="widget-header"><i class="icon-bookmark"></i><h3>État actuel</h3></div>
 					<div class="widget-content">
+						<% @home.rooms.each do |room| %>
+							<div class="piece">
+								<h4><%= room.name %></h4>
+									<span class="consigne">22.0°C </span>
+									<span class="temperature">
+										<%= room.temperature %>°C 
+										<%= '<i class="icon-caret-up"></i>'.html_safe if room.heating %>
+										<%= '<i class="icon-caret-down"></i>'.html_safe if !room.heating %>
+									</span>
+								<div class="interrupteur">
+									<input type="checkbox" <%= 'disabled="disabled"' if Home.first.mode_auto %> <%= 'checked="checked"' if room.heating %>  id="temp_'<%= room.id %>'" name="temp_'<%= room.id %>'" />
+									<label for="temp_'<%= room.id %>'"></label>
+								</div>
+							</div>
+						<% end  %>
 
-						<div class="piece">
-							<h4>Salle à manger</h4><span class="consigne">22.0°C </span><span class="temperature">21.6°C <i class="icon-caret-up"></i></span>
-							<div class="interrupteur">
-								<input type="checkbox" checked="checked" id="temp1" name="temp1" disabled="disabled" />
-								<label for="temp1"></label>
-							</div>
-						</div>
-						<div class="piece">
-							<h4>Chambre</h4><span class="consigne">17.5°C </span><span class="temperature">18.3°C <i class="icon-caret-down"></i></span>
-							<div class="interrupteur">
-								<input type="checkbox" id="temp2" name="temp2" disabled="disabled" />
-								<label for="temp2"></label>
-							</div>
-						</div>
-						<div class="piece">
-							<h4>Cuisine</h4><span class="consigne">21.0°C </span><span class="temperature">20.1°C <i class="icon-caret-up"></i></span>
-							<div class="interrupteur">
-								<input type="checkbox" checked="checked" id="temp3" name="temp3" disabled="disabled" />
-								<label for="temp3"></label>
-							</div>
-						</div>
-						<div class="piece">
-							<h4>Extérieur</h4><span class="temperature">16.1°C =</span>
-							<div class="interrupteur exterieur">
-								<input type="checkbox" checked="checked" id="temp4" name="temp4" disabled="disabled" />
-								<label for="temp4"></label>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header"><i class="icon-signal"></i><h3>Mesures récentes</h3></div>
+					<% #http://railscasts.com/episodes/324-passing-data-to-javascript rails cast pour savoir comment passer des arguments rails vers le javascript d'une belle manière %>
 					<div class="widget-content"><div id="placeholder" class="flot flot-width-full flot-height-300"></div></div>
 				</div>
 			</div>

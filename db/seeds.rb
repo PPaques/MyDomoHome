@@ -13,10 +13,10 @@ Home.delete_all
 Home.create(mode_auto: true)
 
 Room.delete_all
-Room.create(name: "Extérieur", heating: false, light: false, home: Home.first, isoutside: true)
-Room.create(name: "Salon", heating: false, light: false, home: Home.first)
-Room.create(name: "Cuisine", heating: false, light: false, home: Home.first)
-Room.create(name: "Chambre", heating: false, light: false, home: Home.first)
+Room.create(name: "Extérieur", heating: false, light: false, temperature: 20, home: Home.first, isoutside: true)
+Room.create(name: "Salon", heating: false, light: false, temperature: 20, home: Home.first)
+Room.create(name: "Cuisine", heating: false, light: false, temperature: 20, home: Home.first)
+Room.create(name: "Chambre", heating: false, light: false, temperature:20, home: Home.first)
 
 Opening.delete_all
 Opening.create(name: "Porte entrée", gpio_number: 22, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first)

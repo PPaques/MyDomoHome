@@ -12,6 +12,10 @@ class Room < ActiveRecord::Base
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
 
+  def self.consigne
+    20
+  end
+
   def is_connected_outside(visited)
     # On parcours chaque ouverture de la pièce
     self.openings.each do |opening|
