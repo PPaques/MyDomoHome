@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:Pirou01/i2c.git
+  revision: 7fa8d8e4fa950f9200a1888daeb4f971f0e70d78
+  specs:
+    i2c (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,7 +63,6 @@ GEM
     highline (1.6.16)
     hike (1.2.1)
     i18n (0.6.1)
-    i2c (0.2.0)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -143,7 +148,7 @@ DEPENDENCIES
   clockwork (~> 0.5.0)
   coffee-rails (~> 3.2.1)
   daemons
-  i2c (~> 0.2.0)
+  i2c!
   jquery-rails
   mysql2
   nested_form
