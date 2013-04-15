@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateHistory < ActiveRecord::Migration
   def change
   	create_table :history do |t|

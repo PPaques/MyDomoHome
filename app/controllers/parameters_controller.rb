@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ParametersController < ApplicationController
   # GET /homes
   # GET /homes.json

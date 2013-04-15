@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Gpio 
    attr_reader :pin, :last_value, :value, :direction, :invert
     

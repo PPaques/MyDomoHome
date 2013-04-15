@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SimulatorController < ApplicationController
   # GET /simulator
   def index

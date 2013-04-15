@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module BootstrapFlashHelper
   ALERT_TYPES = [:error, :info, :success, :warning]
 

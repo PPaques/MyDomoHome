@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateRoomsOpeningsJoinTable < ActiveRecord::Migration
   def self.up
     create_table :openings_rooms, :id => false do |t|

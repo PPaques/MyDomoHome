@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # include necessary library
 require 'bundler/capistrano' # Give helpers for bundler (gemfile)
 require 'capistrano_colors'  # Show colors during deploy

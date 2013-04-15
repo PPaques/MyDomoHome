@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OpeningMeasure < ActiveRecord::Base
   attr_accessible :opened
 

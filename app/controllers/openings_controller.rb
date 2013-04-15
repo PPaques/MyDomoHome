@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OpeningsController < ApplicationController
   # GET /openings
   # GET /openings.json

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json

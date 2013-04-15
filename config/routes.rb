@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 MyHome::Application.routes.draw do
   match "login" => "authentification#login"
   match "logout" => "authentification#logout"

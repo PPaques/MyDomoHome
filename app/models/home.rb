@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Home < ActiveRecord::Base
   attr_accessible :mode_auto, :rooms_attributes
 

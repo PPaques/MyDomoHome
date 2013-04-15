@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ApplicationHelper
     def tab_link_to(name, path, active = false)
         name = link_to(raw(name), path)

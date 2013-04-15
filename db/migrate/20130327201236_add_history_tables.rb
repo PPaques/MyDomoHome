@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddHistoryTables < ActiveRecord::Migration
   def change
     create_table :temperature_measures do |t|

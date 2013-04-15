@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Opening < ActiveRecord::Base
   attr_accessible :opened, :type, :name, :rooms, :home, :gpio_number
 

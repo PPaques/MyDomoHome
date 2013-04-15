@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddHeatingLog < ActiveRecord::Migration
 	def change
 		create_table :heating_logs do |t|

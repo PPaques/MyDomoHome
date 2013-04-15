@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TemperatureMeasure < ActiveRecord::Base
   attr_accessible :temperature
 

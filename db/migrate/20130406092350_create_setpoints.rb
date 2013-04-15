@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSetpoints < ActiveRecord::Migration
   def change
     create_table :setpoints do |t|

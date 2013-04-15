@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
 
   # On vérifie TOUJOURS si l'utilisateur est loggé !

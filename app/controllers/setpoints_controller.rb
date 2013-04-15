@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SetpointsController < ApplicationController
   # GET /setpoints
   # GET /setpoints.json

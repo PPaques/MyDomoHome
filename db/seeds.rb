@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #!/bin/env ruby
 # encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -38,3 +39,6 @@ User.create(name: "admin", password: "admin", email: "admin@admin.com", role: 1)
 TemperatureMeasure.delete_all
 OpeningMeasure.delete_all
 HeatingLog.delete_all
+
+#cleaning setpoint
+Setpoint.delete_all

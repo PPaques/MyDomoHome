@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateOpenings < ActiveRecord::Migration
   def change
     create_table :openings do |t|

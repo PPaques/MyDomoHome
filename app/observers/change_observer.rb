@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ChangeObserver < ActiveRecord::Observer
   #*********************************
   # Work in progress... not working

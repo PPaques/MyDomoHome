@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class HeatingLog < ActiveRecord::Base
   attr_accessible :heating
 

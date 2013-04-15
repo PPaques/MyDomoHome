@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'clockwork'
 # load the entire env
 require './config/boot'
