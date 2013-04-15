@@ -8,7 +8,7 @@ default_run_options[:pty] = true
 
 # explain to Capistrano where is the ruby environment
 set :default_environment, {
-  'PATH' => "/home/pi/.gem/ruby/1.9.1/bin/:$PATH"
+  'PATH' => "/home/pi/.gem/ruby/2.0.0/bin/:$PATH"
 }
   
 # Application set
@@ -33,12 +33,6 @@ role :web, "www.mydomohome.com"                          # Your HTTP server, Apa
 role :app, "www.mydomohome.com"                          # This may be the same as your `Web` server
 role :db,  "www.mydomohome.com", :primary => true # This is where Rails migrations will run
 
-# clockwork confing
-set :clockwork_roles, :web
-set :cw_log_file, "#{current_path}/log/clockwork.log"
-set :cw_pid_file, "#{current_path}/tmp/pids/clockwork.pid"
-
-
 # clean up after each deploy
 after "deploy:restart",         "deploy:cleanup"
 after "deploy:finalize_update", "deploy:symlink_directories_and_files"
@@ -47,40 +41,23 @@ after "deploy:stop", "clockwork:stop"
 after "deploy:start", "clockwork:start"
 after "deploy:restart", "clockwork:restart"
  
-
-
 namespace :clockwork do
   desc "Stop clockwork"
-  task :stop, :roles => clockwork_roles, :on_error => :continue, :on_no_matching_servers => :continue do
-    run "if [ -d #{current_path} ] && [ -f #{pid_file} ]; then cd #{current_path} && kill -INT `cat #{pid
-_file}` ; fi"
+  task :stop, :roles => :app, :on_no_matching_servers => :continue do
+    run "clockworkd -c #{current_path}/config/clock.rb stop"
   end
  
   desc "Start clockwork"
-  task :start, :roles => clockwork_roles, :on_no_matching_servers => :continue do
-    run "daemon --inherit --name=clockwork --env='#{rails_env}' --output=#{log_file} --pidfile=#{pid_file
-} -D #{current_path} -- bundle exec clockwork config/clock.rb"
+  task :start, :roles => :app, :on_no_matching_servers => :continue do
+    run "clockworkd -c #{current_path}/config/clock.rb start"
   end
  
   desc "Restart clockwork"
-  task :restart, :roles => clockwork_roles, :on_no_matching_servers => :continue do
+  task :restart, :roles => :app, :on_no_matching_servers => :continue do
     stop
     start
   end
- 
-  def rails_env
-    fetch(:rails_env, false) ? "RAILS_ENV=#{fetch(:rails_env)}" : ''
-  end
- 
-  def log_file
-    fetch(:clockwork_log_file, "#{current_path}/log/clockwork.log")
-  end
- 
-  def pid_file
-    fetch(:clockwork_pid_file, "#{current_path}/tmp/pids/clockwork.pid")
-  end
 end
-
 
 
 # restart the server and make the new link to the database configuration
