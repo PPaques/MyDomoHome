@@ -13,22 +13,22 @@ Home.delete_all
 Home.create(mode_auto: true)
 
 Room.delete_all
-Room.create(name: "Extérieur", heating: false, light: false, home: Home.first, isoutside: true)
-Room.create(name: "Salon", heating: false, light: false, home: Home.first)
-Room.create(name: "Cuisine", heating: false, light: false, home: Home.first)
-Room.create(name: "Chambre", heating: false, light: false, home: Home.first)
+Room.create(name: "Extérieur",  gpio_heat_number: 14,heating: false, light: false, temperature: 20, home: Home.first, isoutside: true)
+Room.create(name: "Salon",      gpio_heat_number: 15,heating: false, light: false, temperature: 20, home: Home.first)
+Room.create(name: "Cuisine",    gpio_heat_number: 18,heating: false, light: false, temperature: 20, home: Home.first)
+Room.create(name: "Chambre",    gpio_heat_number: 23,heating: false, light: false, temperature: 20, home: Home.first)
 
 Opening.delete_all
-Opening.create(name: "Porte entrée", gpio_number: 22, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first)
-Opening.create(name: "Fenêtre gauche", gpio_number: 9, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first )
-Opening.create(name: "Fenêtre droite", gpio_number: 11, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first )
+Opening.create(name: "Porte entrée",    gpio_number: 22, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first)
+Opening.create(name: "Fenêtre gauche",  gpio_number: 9 , opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first )
+Opening.create(name: "Fenêtre droite",  gpio_number: 11, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first )
 
 Opening.create(name: "Fenêtre cuisine", gpio_number: 10, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Cuisine")], home: Home.first )
 
 Opening.create(name: "Fenêtre chambre", gpio_number: 21, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Chambre")], home: Home.first )
 
-Opening.create(name: "Porte cuisine", gpio_number: 17, opened: false, rooms: [Room.find_by_name("Salon"), Room.find_by_name("Cuisine")], home: Home.first )
-Opening.create(name: "Porte chambre", gpio_number: 4, opened: false, rooms: [Room.find_by_name("Salon"), Room.find_by_name("Chambre")], home: Home.first )
+Opening.create(name: "Porte cuisine",   gpio_number: 17, opened: false, rooms: [Room.find_by_name("Salon"), Room.find_by_name("Cuisine")], home: Home.first )
+Opening.create(name: "Porte chambre",   gpio_number: 4 , opened: false, rooms: [Room.find_by_name("Salon"), Room.find_by_name("Chambre")], home: Home.first )
 
 #cleaning user
 User.delete_all

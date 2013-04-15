@@ -1,0 +1,17 @@
+<div class="row-fluid">
+  <%= form_for @home do |f| %>  
+    <div class="span12">
+      <div class="widget">
+        <div class="widget-header"><i class="icon-bookmark"></i><h3>Maison</h3></div>
+        <div class="widget-content">
+          <h4>Mode automatique</h4>
+            <div class="interrupteur">
+              <%= f.check_box :mode_auto %>
+              <%= f.label :mode_auto, '. ' %> 
+            </div>
+          <%= f.submit "Update", :class => 'btn btn-primary' %>
+         </div>
+      </div>
+    </div>
+  <% end %>      
+</div>

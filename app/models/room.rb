@@ -1,5 +1,5 @@
 class Room < ActiveRecord::Base
-  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside
+  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number
 
   belongs_to :home, inverse_of: :rooms
   has_and_belongs_to_many :openings
@@ -11,6 +11,22 @@ class Room < ActiveRecord::Base
 
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
+
+  def after_initialize
+    @my_cache = {}
+    if Rails.env.production?
+      @gpio = Gpio.new(:pin => :gpio_heat_number, :direction => :out)
+    end
+  end
+
+  def consigne
+    # TODO cette routine doit retourner la valeur de consigne actuelle
+    20
+  end
+
+  def self.isoutside?
+    isoutside
+  end
 
   def is_connected_outside(visited)
     # On parcours chaque ouverture de la pièce
@@ -36,6 +52,12 @@ class Room < ActiveRecord::Base
     puts ""
     return false
   end
+
+  def update_heating_state
+    @gpio.on if self.heating
+    @gpio.off unless self.heating
+  end 
+
 
   private
 
