@@ -18,13 +18,12 @@
 										<div class="interrupteur">
 											<%= room.check_box :heating, :class => 'check_box', :disabled => true if @home.mode_auto%>
 											<%= room.check_box :heating, :class => 'check_box' unless @home.mode_auto%>
-									    <%= room.label :heating, '.' %>
+									    <%= room.label :heating, raw('&nbsp;') %>
 											</div>
 									<% end %>
 								</div>
 							  <% index += 1 %>
 							<% end  %>
-
 							<%= f.submit "Update", :class => 'btn btn-primary pull-right' %>
 						<% end %>
 					</div>
