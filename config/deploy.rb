@@ -33,6 +33,11 @@ role :web, "www.mydomohome.com"                          # Your HTTP server, Apa
 role :app, "www.mydomohome.com"                          # This may be the same as your `Web` server
 role :db,  "www.mydomohome.com", :primary => true # This is where Rails migrations will run
 
+# clockwork confing
+set :clockwork_roles, :web
+set :cw_log_file, "#{current_path}/log/clockwork.log"
+set :cw_pid_file, "#{current_path}/tmp/pids/clockwork.pid"
+
 
 # clean up after each deploy
 after "deploy:restart",         "deploy:cleanup"
@@ -42,6 +47,7 @@ after "deploy:stop", "clockwork:stop"
 after "deploy:start", "clockwork:start"
 after "deploy:restart", "clockwork:restart"
  
+
 
 namespace :clockwork do
   desc "Stop clockwork"

@@ -8,7 +8,7 @@ gem 'clockwork',  "~> 0.5.0"
 gem 'tzinfo',     "~> 0.3.35"
 # to run the worker like a daemon
 gem 'daemons'
-gem 'i2c', git: "git@github.com:Pirou01/i2c.git"
+gem 'i2c', "~> 0.2.22"
 gem "nested_form"
 
 # Gems used only for assets and not required
