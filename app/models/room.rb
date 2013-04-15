@@ -2,6 +2,7 @@ class Room < ActiveRecord::Base
   attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number
 
   belongs_to :home, inverse_of: :rooms
+  has_many :setpoints, inverse_of: :room
   has_and_belongs_to_many :openings
   has_many :temperature_measures, inverse_of: :room
   has_many :heating_logs, inverse_of: :room

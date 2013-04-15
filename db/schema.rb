@@ -11,9 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130408095044) do
-=======
 ActiveRecord::Schema.define(:version => 20130414211426) do
 
   create_table "heating_logs", :force => true do |t|
@@ -22,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20130414211426) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
->>>>>>> 93056482890c319e5aaa7f33ddab8812f40ddc1b
 
   create_table "history", :force => true do |t|
     t.integer  "opening_id"
@@ -49,8 +45,10 @@ ActiveRecord::Schema.define(:version => 20130414211426) do
   create_table "openings", :force => true do |t|
     t.boolean  "opened"
     t.text     "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "home_id"
+    t.integer  "gpio_number"
   end
 
   create_table "openings_rooms", :id => false, :force => true do |t|

@@ -38,3 +38,6 @@ User.create(name: "admin", password: "admin", email: "admin@admin.com", role: 1)
 TemperatureMeasure.delete_all
 OpeningMeasure.delete_all
 HeatingLog.delete_all
+
+#cleaning setpoint
+Setpoint.delete_all
