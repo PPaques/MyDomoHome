@@ -16,7 +16,7 @@ set :application, "MyHome"
 set :repository,  "git@bitbucket.org:ppaques/cemapise.git"
 ssh_options[:forward_agent] = true
 set :copy_exclude, [".git", "spec"]
-set :deploy_to,   "/home/pi/myHome"
+set :deploy_to,   "/var/www/myHome"
 set :branch,      "master"
 set :deploy_via,  :remote_cache
 set :normalize_asset_timestamps, false
