@@ -48,12 +48,14 @@ after 'deploy:restart', 'unicorn:restart'  # app preloaded
 namespace :clockwork do
   desc "Stop clockwork"
   task :stop, :roles => :app, :on_no_matching_servers => :continue do
-    run "clockworkd -c #{current_path}/config/clock.rb stop"
+    run "kill -TERM $(cat #{current_path}/tmp/pids/clockwork.pid)"
+    run "rm #{current_path}/tmp/pids/clockwork.pid)"
   end
  
   desc "Start clockwork"
   task :start, :roles => :app, :on_no_matching_servers => :continue do
-    run "bundle exec clockwork #{current_path}/config/clock.rb start "
+    run "RAILS_ENV=production clockwork config/clock.rb &"
+    run "echo $! >> #{current_path}/tmp/pids/clockwork.pid"
   end
  
   desc "Restart clockwork"
