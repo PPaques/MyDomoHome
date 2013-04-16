@@ -2,6 +2,7 @@
 # include necessary library
 require 'bundler/capistrano' # Give helpers for bundler (gemfile)
 require 'capistrano_colors'  # Show colors during deploy
+require 'capistrano-unicorn'
 
 # Correct the bug of debian with the ssh
 default_run_options[:pty] = true
@@ -40,6 +41,9 @@ after "deploy:create_symlink",  "deploy:resymlink"
 after "deploy:stop", "clockwork:stop"
 after "deploy:start", "clockwork:start"
 after "deploy:restart", "clockwork:restart"
+after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:restart'  # app preloaded
+
  
 namespace :clockwork do
   desc "Stop clockwork"
@@ -49,7 +53,7 @@ namespace :clockwork do
  
   desc "Start clockwork"
   task :start, :roles => :app, :on_no_matching_servers => :continue do
-    run "clockworkd -c #{current_path}/config/clock.rb start"
+    run "bundle exec clockwork #{current_path}/config/clock.rb start "
   end
  
   desc "Restart clockwork"

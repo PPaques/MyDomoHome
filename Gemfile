@@ -30,6 +30,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'capistrano'
   gem 'capistrano_colors'
+  gem 'capistrano-unicorn', :require => false
   gem 'better_errors'
 end
 
