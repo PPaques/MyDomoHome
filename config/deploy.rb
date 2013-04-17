@@ -49,15 +49,14 @@ namespace :clockwork do
   desc "Stop clockwork"
   task :stop, :roles => :app, :on_no_matching_servers => :continue do
     run "kill -TERM $(cat #{current_path}/tmp/pids/clockwork.pid)"
-    run "rm #{current_path}/tmp/pids/clockwork.pid)"
+    run "rm #{current_path}/tmp/pids/clockwork.pid"
   end
  
   desc "Start clockwork"
   task :start, :roles => :app, :on_no_matching_servers => :continue do
-    run "RAILS_ENV=production clockwork config/clock.rb &"
-    run "echo $! >> #{current_path}/tmp/pids/clockwork.pid"
+    run "cd #{current_path} && export RAILS_ENV=production && (nohup clockwork config/clock.rb & echo $! > #{current_path}/tmp/pids/clockwork.pid) > /dev/null 2>&1 && sleep 1", :pty => true
   end
- 
+
   desc "Restart clockwork"
   task :restart, :roles => :app, :on_no_matching_servers => :continue do
     stop
