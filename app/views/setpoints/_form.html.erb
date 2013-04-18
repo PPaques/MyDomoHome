@@ -1,33 +1,31 @@
 <%= form_for(@setpoint) do |f| %>
   <% if @setpoint.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@setpoint.errors.count, "error") %> prohibited this setpoint from being saved:</h2>
-
-      <ul>
-      <% @setpoint.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      
+      <ul><% @setpoint.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :room_id %><br />
-    <%= f.select :room_id, options_from_collection_for_select(Room.all, :id, :name) ,{:multiple => true}  %>
+    <%= f.label :room_id, "Pièce" %><br />
+    <%= f.select :room_id, options_from_collection_for_select(Room.find(:all, :conditions => { :isoutside=> false }), :id, :name) ,{:multiple => true}  %>
   </div>
   <div class="field">
-    <%= f.label :temperature %><br />
+    <%= f.label :temperature , "Température"%><br />
     <%= f.text_field :temperature %>
   </div>
   <div class="field">
-    <%= f.label :times %><br />
+    <%= f.label :times, "Heure" %><br />
     <%= f.time_select :times%>
   </div>
 
 
     <div class="field">
-    <%= f.label :day %><br />
-    <%= f.select(:day, options_for_select([['Monday',1],['Tuesday', 2],['Wednesday', 3],['Thursday', 4],['Friday',5],['Saturday', 6], ['Sunday', 0]])) %>
+    <%= f.label :day, "Jour" %><br />
+    <%= f.select(:day, options_for_select([['Lundi',1],['Mardi', 2],['Mercredi', 3],['Jeudi', 4],['Vendredi',5],['Samedi', 6], ['Dimanche', 0]])) %>
   </div>
   <div class="actions">
     <%= f.submit %>

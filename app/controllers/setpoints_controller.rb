@@ -45,7 +45,7 @@ class SetpointsController < ApplicationController
 
     respond_to do |format|
       if @setpoint.save
-        format.html { redirect_to @setpoint, notice: 'Setpoint was successfully created.' }
+        format.html { redirect_to @setpoint, notice: 'Consigne sauvée' }
         format.json { render json: @setpoint, status: :created, location: @setpoint }
       else
         format.html { render action: "new" }

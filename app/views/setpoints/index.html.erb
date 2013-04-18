@@ -1,13 +1,12 @@
-<h1>Listing setpoints</h1>
+<h1>Liste des consignes</h1>
 
 <table>
   <tr>
-    <th>Room</th>
-    <th>Temperature</th>
-    <th>Times</th>
-    <th>Day</th>
-    <th></th>
-    <th></th>
+    <th>Pièce</th>
+    <th>Température</th>
+    <th>Heure</th>
+    <th>Jour</th>
+    <th colspan="3"> Modification</th>
   </tr>
 
 <% @setpoints.each do |setpoint| %>
@@ -16,13 +15,13 @@
     <td><%= setpoint.temperature %></td>
     <td><%= setpoint.times.strftime("%H:%M") %></td>
     <td><%= setpoint.day_full %></td>
-    <td><%= link_to 'Show', setpoint %></td>
-    <td><%= link_to 'Edit', edit_setpoint_path(setpoint) %></td>
-    <td><%= link_to 'Destroy', setpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="colonneedit"><%= link_to 'Voir', setpoint %></td>
+    <td class="colonneedit"><%= link_to 'Modifier', edit_setpoint_path(setpoint) %></td>
+    <td class="colonneedit"><%= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Setpoint', new_setpoint_path %>
+<%= link_to 'Nouvelle consigne', new_setpoint_path %>

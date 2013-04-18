@@ -1,25 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Room:</b>
-  <%= @setpoint.room_id %>
-</p>
+<table>
+  <tr>
+    <th>Pièce</th>
+    <th>Température</th>
+    <th>Heure</th>
+    <th>Jour</th>
+  </tr>
+  <tr>
+    <td><%= @setpoint.room.name %></td>
+    <td><%= @setpoint.temperature %></td>
+    <td><%= @setpoint.times.strftime("%H:%M") %></td>
+    <td> <%= @setpoint.day_full %></td>
+  </tr>
 
-<p>
-  <b>Temperature:</b>
-  <%= @setpoint.temperature %>
-</p>
+</table>
 
-<p>
-  <b>Times:</b>
-  <%= @setpoint.times %>
-</p>
-
-<p>
-  <b>Day:</b>
-  <%= @setpoint.day %>
-</p>
-
-
-<%= link_to 'Edit', edit_setpoint_path(@setpoint) %> |
-<%= link_to 'Back', setpoints_path %>
+<%= link_to 'Modifier', edit_setpoint_path(@setpoint) %> |
+<%= link_to 'Retour', setpoints_path %>

@@ -22,8 +22,19 @@ class Room < ActiveRecord::Base
   end
 
   def consigne
-    # TODO cette routine doit retourner la valeur de consigne actuelle
-    20
+    set = self.setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min}").order("times DESC").first
+    i=1
+    while (set.nil? or i< 6)  
+      self.setpoints.unscoped.where("day=#{(Time.now-i.days).wday}").order("times ASC").first
+      i+=1
+    end
+
+
+    if set.nil?
+      20
+    else
+      set.temperature
+    end
   end
 
   def self.isoutside?
