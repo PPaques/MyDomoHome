@@ -599,3 +599,7 @@ li.time-display-right {
     position: absolute;
     right   : 20px;
 }
+
+span#time {
+    color: #FF9900;
+}
