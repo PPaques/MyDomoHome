@@ -2,6 +2,7 @@
 MyHome::Application.routes.draw do
   match "login" => "authentification#login"
   match "logout" => "authentification#logout"
+  match "getRecentJSON" => "history#getRecentJSON"
 
   resources :users
 
@@ -22,6 +23,8 @@ MyHome::Application.routes.draw do
   resources :setpoints
 
   resources :parameters
+
+  resources :history
 
 
   # The priority is based upon order of creation:
