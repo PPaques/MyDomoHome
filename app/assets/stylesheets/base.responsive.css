@@ -4,7 +4,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 854px) {
 	body {
 		padding: 0;
 	}
@@ -49,9 +49,15 @@
 	section div.container-fluid {
 		padding: 20px;
 	}
+
 	aside > ul {
 		display: block;
 	}
+
+ 	li.time-display-right {
+		position: relative;
+		right   : 0;
+ 	}
 }
 
 @media (max-width:480px){
