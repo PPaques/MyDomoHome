@@ -78,7 +78,7 @@ class Room < ActiveRecord::Base
     if self.temperature.nil? 
       self.temperature = 0
     end
-    if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature) > DELTA)
+    if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature).abs > DELTA)
       temperature_measures.create(temperature: self.temperature)
     end
   end

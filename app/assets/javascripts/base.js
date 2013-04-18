@@ -16,21 +16,22 @@ $(document).ready(function() {
 			},
 		xaxis: {
 				mode: "time",
-				timeformat: "%Y/%m/%d",
+				timeformat: "%H:%M",
                 color: "#666"
 			},
         yaxis: {
                 color: "#888"
         }
 	};
-	var data = [ 
-		{ label: "Chambre", color: "#FF9900", data: [ [t, 1], [t+100000, -14], [t+200000, 5] ] },
-  		{ label: "Cuisine", color: "#C8F000", data: [ [t, 13], [t+100000, 11], [t+200000, -7] ] },
-        { label: "Salle de bain", color: "#EE3C19", data: [ [t, 5], [t+100000, -2], [t+200000, 12] ] },
-        { label: "Extérieur", color: "#006CFF", data: [ [t, -2], [t+100000, 3], [t+200000, -2] ] }
-	];
-	$("#placeholder").plot(data, options);
-
+	$.ajax({
+		url: "/getRecentJSON",
+		method: 'GET',
+		dataType: 'json',
+		success: function(json){
+			data = json;
+			$("#placeholder").plot(data, options);
+		}
+	});
 	$("aside .btn-collapse").click(function(){
 		$("aside .submenu-collapse").stop().slideToggle('fast');
 	});
