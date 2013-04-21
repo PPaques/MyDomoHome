@@ -58,6 +58,10 @@
 		position: relative;
 		right   : 0;
  	}
+
+ 	aside {
+ 		top:269px;
+ 	}
 }
 
 @media (max-width:480px){
@@ -73,6 +77,7 @@
 	aside, aside ul {
 		position: relative;
 		width: 100%;
+		top:0;
 	}
 
 	aside > ul > li > a span {
@@ -89,6 +94,10 @@
 		background-color: #292929;
 		display: block;
 		height: 30px;
+	}
+
+	aside .toggle-submenu span {
+		color: #FFF;
 	}
 
 	aside .nav {

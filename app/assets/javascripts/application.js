@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 // retirer le ! pour réactiver les fichiers
+//= require timeDisplay
 //= require jquery
 //= require jquery_ujs
 //= !require twitter/bootstrap

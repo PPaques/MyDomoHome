@@ -11,20 +11,27 @@
 									<%= "<span class=\"consigne\">#{@home.rooms[index].consigne}°C </span>".html_safe unless @home.rooms[index].isoutside? %>
 									<span class="temperature">
 										<%= @home.rooms[index].temperature %>°C 
+										
+										<%= '<i class="icon-caret-up"></i>'.html_safe if @home.rooms[index].temperature_slope == "asc" %>
+										<%= '<i class="icon-caret-down"></i>'.html_safe if @home.rooms[index].temperature_slope == "desc" %>
+										<%= '='.html_safe if @home.rooms[index].temperature_slope == "equ" %>
+<!-- 
 										<%= '<i class="icon-caret-up"></i>'.html_safe if @home.rooms[index].heating and !@home.rooms[index].isoutside? %>
-										<%= '<i class="icon-caret-down"></i>'.html_safe if !@home.rooms[index].heating and !@home.rooms[index].isoutside? %>
+										<%= '<i class="icon-caret-down"></i>'.html_safe if !@home.rooms[index].heating and !@home.rooms[index].isoutside? %> -->
 									</span>
 									<% if !@home.rooms[index].isoutside? %>
 										<div class="interrupteur">
 											<%= room.check_box :heating, :class => 'check_box', :disabled => true if @home.mode_auto%>
 											<%= room.check_box :heating, :class => 'check_box' unless @home.mode_auto%>
-									    <%= room.label :heating, raw('&nbsp;') %>
+									    	<%= room.label :heating, raw('&nbsp;'), :class => 'disabled' if @home.mode_auto %>
+									    	<%= room.label :heating, raw('&nbsp;') unless @home.mode_auto %>
 											</div>
 									<% end %>
 								</div>
 							  <% index += 1 %>
 							<% end  %>
-							<%= f.submit "Update", :class => 'btn btn-primary pull-right' %>
+							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right', :disabled => true if @home.mode_auto%>
+							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
 						<% end %>
 					</div>
 				</div>
@@ -33,7 +40,7 @@
 				<div class="widget">
 					<div class="widget-header"><i class="icon-signal"></i><h3>Mesures récentes</h3></div>
 					<% #http://railscasts.com/episodes/324-passing-data-to-javascript rails cast pour savoir comment passer des arguments rails vers le javascript d'une belle manière %>
-					<div class="widget-content"><div id="placeholder" class="flot flot-width-full flot-height-300"></div></div>
+					<div class="widget-content"><div id="recentTemps" class="flot flot-width-full flot-height-300"><div class="spinner"><i class="icon-spinner icon-spin"></i></div></div></div>
 				</div>
 			</div>
 		</div>

@@ -30,11 +30,20 @@ a:hover, a:focus {
 }
 
 
-.btn-primary, .btn-primary:visited, .btn-primary:link {
+.btn-primary {
     background-color: #DD8800;
+    background-image: -moz-linear-gradient(center top , #FF9900, #DD8800);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF9900), color-stop(100%,#DD8800)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #FF9900 0%,#DD8800 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #FF9900 0%,#DD8800 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #FF9900 0%,#DD8800 100%); /* IE10+ */
+    background: linear-gradient(center top,  #FF9900 0%,#DD8800 100%); /* W3C */
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
 
+i .btn-primary,i .btn-primary:visited,i .btn-primary:link {
+    
     background: #DD8800; /* Old browsers */
     background: -moz-linear-gradient(top,  #FF9900 0%, #DD8800 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF9900), color-stop(100%,#DD8800)); /* Chrome,Safari4+ */
@@ -48,7 +57,6 @@ a:hover, a:focus {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
     background-color: #DD8800;
-    background-color: #FF0000;
 }
 
 textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input{
@@ -532,6 +540,10 @@ div.interrupteur input[type=checkbox] {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
 }
 
+.interrupteur label.disabled{
+    cursor: auto;
+}
+
 .interrupteur input[type=checkbox]:checked + label {
     left: 43px;
 }
@@ -598,4 +610,12 @@ div.interrupteur input[type=checkbox] {
 li.time-display-right {
     position: absolute;
     right   : 20px;
+}
+
+#recentTemps div.spinner {
+    font-size: 60px;
+    text-align: center;
+    padding-top: 120px;
+    color: #AAA;
+    text-shadow: none;
 }

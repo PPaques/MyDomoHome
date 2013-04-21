@@ -29,10 +29,15 @@ $(document).ready(function() {
 		dataType: 'json',
 		success: function(json){
 			data = json;
-			$("#placeholder").plot(data, options);
+			$("#recentTemps").plot(data, options);
 		}
 	});
 	$("aside .btn-collapse").click(function(){
 		$("aside .submenu-collapse").stop().slideToggle('fast');
 	});
+});
+$(window).resize(function() {
+	if(window.innerWidth > 480){
+		$("aside .submenu-collapse").css('display','');
+	}
 });

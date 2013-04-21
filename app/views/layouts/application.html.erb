@@ -59,12 +59,8 @@
           <%= tab_link_to raw("<i class=\"icon-group\"></i><span>Utilisateurs</span>"), users_path, params[:controller] == 'users'  %>
           <%= tab_link_to raw("<i class=\"icon-fire\"></i><span>Simulator</span>"), simulator_index_path, params[:controller] == 'simulator' if Rails.env.development?  %>
 
-          <li class="time-display-right">  <!-- Display current time, update each second -->
-            <a href="#" title="Heure actuelle">
-              <i class="icon-time"></i>
-              <span id="time">Test</span>
-            </a>
-          </li>
+            <!-- Display current time, update each second -->
+          <li class="time-display-right"><a href="#" title="Heure actuelle"><i class="icon-time"></i><span id="time">00:00:00</span></a></li>
         </ul>
       </div> <!-- /container -->
     </div> <!-- /subnavbar-inner -->
@@ -102,9 +98,9 @@
 
 <!--[if IE]><%= javascript_include_tag "excanvas" %><![endif]-->
 <%= javascript_include_tag "application" %>
-<%= javascript_include_tag "timeDisplay" %>
 <!--
-<%= javascript_include_tag "base" %>
+  <%= javascript_include_tag "timeDisplay" %>
+  <%= javascript_include_tag "base" %>
 -->
   </body>
 </html>

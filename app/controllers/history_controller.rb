@@ -16,9 +16,11 @@ class HistoryController < ApplicationController
   		# mesures = room.temperature_measures.where(["created_at >= ?", 24.hours.ago], :limit => 10)
   		mesures = room.temperature_measures.find(:all, :conditions => ["created_at > ?", 24.hours.ago])
   		data = []
+      data << [Time.now.to_i*1000, room.temperature]
   		mesures.each do |mesure|
   			data << [mesure.created_at.to_time.to_i*1000, mesure.temperature ]
   		end
+
   		result << {:label => room.name, :color => colors.shift, :data => data}
   	end
     a = [1, 2, 3]
