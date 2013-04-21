@@ -31,7 +31,7 @@
         <div class="nav-collapse">
           <ul class="nav pull-right">
             <li class="hello"><span>Bonjour <%= session[:user]%></span></li>
-            <li><a href="#" title="Profil utilisateur"><i class="icon-user"></i> Profil</a></li>
+            <li><%= link_to raw("<i class=\"icon-user\"></i> Profil"), :controller => 'users', :action => 'edit', :id => session[:user_id] %></li>
             <li><%= link_to raw("<i class=\"icon-off\"></i> Déconnexion"), :controller => 'authentification', :action => 'logout' %></li>
           </ul>
         </div>
