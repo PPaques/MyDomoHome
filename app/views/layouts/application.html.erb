@@ -12,9 +12,12 @@
     <![endif]-->
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
     <%= stylesheet_link_tag "base", :media => "all" %>
     <%= stylesheet_link_tag "base.responsive", :media => "all" %>
+    <%= stylesheet_link_tag "setpoints", :media => "all" %>
   </head>
   <body>
 <header>
@@ -60,7 +63,7 @@
           <%= tab_link_to raw("<i class=\"icon-fire\"></i><span>Simulator</span>"), simulator_index_path, params[:controller] == 'simulator' if Rails.env.development?  %>
 
             <!-- Display current time, update each second -->
-          <li class="time-display-right"><a href="#" title="Heure actuelle"><i class="icon-time"></i><span id="time">00:00:00</span></a></li>
+          <li class="time-display-right"><a title="Heure actuelle"><i class="icon-time"></i><span id="time">00:00:00</span></a></li>
         </ul>
       </div> <!-- /container -->
     </div> <!-- /subnavbar-inner -->
@@ -97,10 +100,7 @@
 </section>
 
 <!--[if IE]><%= javascript_include_tag "excanvas" %><![endif]-->
-<%= javascript_include_tag "application" %>
-<!--
-  <%= javascript_include_tag "timeDisplay" %>
-  <%= javascript_include_tag "base" %>
--->
+  <%= javascript_include_tag "application" %>
+
   </body>
 </html>

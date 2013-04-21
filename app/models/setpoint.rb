@@ -1,26 +1,26 @@
 # -*- encoding : utf-8 -*-
 class Setpoint < ActiveRecord::Base
   attr_accessible :room_id, :temperature, :times, :day
-
   belongs_to :room
-
   default_scope :order => "day ASC, DATE_FORMAT(times, '%H%m')"
+  
+  validates :temperature, :inclusion => 6..40 
 
   def day_full
     if self.day == 1 
-      'Monday'
+      'Lundi'
     elsif self.day == 2 
-      'Tuesday'
+      'Mardi'
     elsif self.day == 3 
-      'Wednesday'  
+      'Mercredi'  
     elsif self.day == 4
-      'Thursday'  
+      'Jeudi'  
     elsif self.day == 5 
-      'Friday'  
+      'Vendredi'  
     elsif self.day == 6 
-      'Saturday'
+      'Samedi'
     elsif self.day == 0   
-      'Sunday' 
+      'Dimanche' 
     end 
   end
 end

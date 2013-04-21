@@ -4,7 +4,7 @@
 
 <%= form_tag 'simulator', method: :post, class: "form-horizontal" %>
 
-  <h2>Temperatures </h2>
+  <h2>Temperatures</h2>
     <% @rooms.each do |room| %>
       <div class="control-group">
         <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>

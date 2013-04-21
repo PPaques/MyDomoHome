@@ -612,10 +612,15 @@ li.time-display-right {
     right   : 20px;
 }
 
+
 #recentTemps div.spinner {
     font-size: 60px;
     text-align: center;
     padding-top: 120px;
     color: #AAA;
     text-shadow: none;
+}
+
+#time {
+    color: #FF9900;
 }
