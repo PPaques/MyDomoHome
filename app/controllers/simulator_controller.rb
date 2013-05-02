@@ -10,8 +10,8 @@ class SimulatorController < ApplicationController
     end
   end
 
-  def create     
-    params.each do |type,data| 
+  def create
+    params.each do |type,data|
       if type.match(/temperature_/)
         #logger.info type.gsub(/temperature_/,'')
         Room.find_by_id(type.gsub(/temperature_/,'')).update_attributes(temperature: data)
@@ -22,10 +22,11 @@ class SimulatorController < ApplicationController
         Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: true) if data == "open"
         Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: false) if data == "closed"
       end
-    
+
 
     end
 
-    redirect_to simulator_index_path, :notice => "Sucessfully saved"
-  end 
-end 
+    # redirect_to simulator_index_path, :notice => "Sucessfully saved"
+    redirect_to simulator_index_path, :notice => "Sauvegarde réussie"
+  end
+end
