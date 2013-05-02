@@ -1,6 +1,6 @@
 <h1>Liste des consignes</h1>
 
-<table>
+<table class="table table-striped table-bordered">
   <tr>
     <th>Pièce</th>
     <th>Température</th>
@@ -15,9 +15,9 @@
     <td><%= setpoint.temperature %></td>
     <td><%= setpoint.times.strftime("%H:%M") %></td>
     <td><%= setpoint.day_full %></td>
-    <td class="colonneedit"><%= link_to 'Voir', setpoint %></td>
-    <td class="colonneedit"><%= link_to 'Modifier', edit_setpoint_path(setpoint) %></td>
-    <td class="colonneedit"><%= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="btn btn-warning"><%= link_to 'Voir', setpoint %></td>
+    <td class="btn btn-warning"><%= link_to 'Modifier', edit_setpoint_path(setpoint) %></td>
+    <td class="btn btn-warning"><%= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
