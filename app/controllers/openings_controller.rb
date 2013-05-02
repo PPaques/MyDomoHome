@@ -45,7 +45,8 @@ class OpeningsController < ApplicationController
 
     respond_to do |format|
       if @opening.save
-        format.html { redirect_to @opening, notice: 'Opening was successfully created.' }
+        # format.html { redirect_to @opening, notice: 'Opening was successfully created.' }
+        format.html { redirect_to @opening, notice: 'Ouverture créée avec succès.' }
         format.json { render json: @opening, status: :created, location: @opening }
       else
         format.html { render action: "new" }
@@ -61,7 +62,8 @@ class OpeningsController < ApplicationController
 
     respond_to do |format|
       if @opening.update_attributes(params[:opening])
-        format.html { redirect_to @opening, notice: 'Opening was successfully updated.' }
+        # format.html { redirect_to @opening, notice: 'Opening was successfully updated.' }
+        format.html { redirect_to @opening, notice: 'Ouverture mise à jour avec succès.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
