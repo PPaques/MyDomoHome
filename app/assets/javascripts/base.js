@@ -17,6 +17,7 @@ $(document).ready(function() {
 		xaxis: {
 				mode: "time",
 				timeformat: "%H:%M",
+				timezone: "browser",
                 color: "#666"
 			},
         yaxis: {

@@ -50,13 +50,7 @@
               <span>Historique</span>
             </a>
           </li>
-          <li>
-            <a href="#" title="Programmation par date des consignes à appliquer">
-              <i class="icon-calendar"></i>
-              <span>Programmation</span>
-            </a>
-          </li>
-
+          
           <%= tab_link_to raw("<i class=\"icon-tasks\"></i><span>Consignes</span>"), setpoints_path, params[:controller] == 'setpoints'  %>
           <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), parameters_path, params[:controller] == 'parameters'  %>
           <%= tab_link_to raw("<i class=\"icon-group\"></i><span>Utilisateurs</span>"), users_path, params[:controller] == 'users'  %>
