@@ -33,13 +33,13 @@ class Home < ActiveRecord::Base
       @i2c_device = ::I2C.create("/dev/i2c-1")
       @converter_address = 48
 
-      # Command system 
+      # Command system
       # SD | C2 | C1 | C0 | PD1 | PD0 | X X
       # SD : sigle ended (1)  or différential (0)
       # C2-C0 : Channel Selection
       # PD 1/0 : Power down selection
       #    PD1  PD0
-      #     0    0  Power down between A/d conversion
+      #     0    0  Power down between A/D conversion
       #     0    1  Internal reference OFF, A/D convert ON
       #     1    0  Internal reference ON , A/D convert OFF
       #     1    1  Internal reference ON , A/D convert ON (NORMAL MODE)
@@ -91,7 +91,7 @@ class Home < ActiveRecord::Base
       # -> Si il existe un chemin jusqu'à l'extérieur, on stoppe le chauffage !
       # -> Si il existe des connexions entre les pièces et que une pièce doit être moins froide que la pièce, on stoppe le chauffage !
       # -> Sinon on chauffe
-      
+
       # On parcours chaque pièce
       self.rooms.each do |room|
         # Si la pièce est l'extérieur, on passe à la suivante !
