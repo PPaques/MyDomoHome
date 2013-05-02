@@ -39,7 +39,7 @@
 		width: 50px;
 	}
 	section {
-		margin-left: 50px;
+		/*margin-left: 50px;*/
 	}
 
 	aside > .nav > li > a:link, aside > .nav > li > a:visited {

@@ -368,9 +368,10 @@ footer a:hover, footer a:focus {
 }
 
 section {
-	margin: 6px 0 0 220px;
+	/*margin: 6px 0 0 220px;*/
+    margin: 6px 0 0 0;
 	background-color: #EEEEEE;
-	border-radius: 5px 0 0 0;
+	border-radius: 5px;
     position: relative;
     text-shadow: 1px 1px 0 #FFFFFF;
 }
