@@ -61,7 +61,8 @@ class SetpointsController < ApplicationController
 
     respond_to do |format|
       if @setpoint.update_attributes(params[:setpoint])
-        format.html { redirect_to @setpoint, notice: 'Setpoint was successfully updated.' }
+        # format.html { redirect_to @setpoint, notice: 'Setpoint was successfully updated.' }
+        format.html { redirect_to @setpoint, notice: 'Consigne mise à jour avec succès.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
