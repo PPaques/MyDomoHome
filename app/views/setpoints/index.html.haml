@@ -15,24 +15,26 @@
       %td.colonneedit= link_to 'Voir', setpoint
       %td.colonneedit= link_to 'Modifier', edit_setpoint_path(setpoint)
       %td.colonneedit= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-%table.table.table-bordered
-  %tr
-    %th Heure
-    %th Dimanche
-    %th Lundi
-    %th Mardi
-    %th Mercredi
-    %th Jeudi
-    %th Vendredi
-    %th Samedi
-  - for h in 0..23 # boucle sur les heures
+%br
+
+%table#setpoints_planning.table.table-bordered.table-condensed
+  %thead
     %tr
-      %td
-        0h#{h}
-      - for d in 0..6
-        %td consigne
-#modal_form.modal.hide
+      %th Heure
+      %th Dimanche
+      %th Lundi
+      %th Mardi
+      %th Mercredi
+      %th Jeudi
+      %th Vendredi
+      %th Samedi
+  %tbody
+    - for h in 0..23 # boucle sur les heures
+      %tr
+        %td
+          = "0h#{h}"
+        - for d in 0..6
+          %td.sel_item{:'data-time' => "#{d}-#{h}"}= "#{d}-#{h}"
 
 = render "mass_assignments"
 

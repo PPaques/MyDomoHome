@@ -56,6 +56,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    flot-rails (0.0.3)
+      jquery-rails
     haml (4.0.2)
       tilt
     highline (1.6.18)
@@ -66,6 +68,9 @@ GEM
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.2)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.7)
     kgio (2.8.0)
     mail (2.5.3)
@@ -154,9 +159,11 @@ DEPENDENCIES
   clockwork (~> 0.5.0)
   coffee-rails (~> 3.2.1)
   daemons
+  flot-rails
   haml
   i2c (~> 0.2.22)
   jquery-rails
+  jquery-ui-rails
   mysql2
   nested_form
   rails (= 3.2.13)

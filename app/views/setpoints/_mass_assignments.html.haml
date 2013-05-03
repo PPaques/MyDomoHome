@@ -1,22 +1,9 @@
-#mass_assign{ :class => 'modal' }
+#mass_assign.modal.fade
   .modal-header
-    = link_to '✖', 'javascript:void(0)', :class => 'close', :"data-dismiss" => "modal"
-    %h3
-      MAaaaaas setpoints
-  %form
-    .modal-body
-      .assignment
-        hello
-        = #select_tag(:project_id, options_from_collection_for_select(current_user.company_projects, :id, :name), :'data-company-url' => company_path(current_user.company) )
-        = #select_tag(:task_id, options_from_collection_for_select(current_user.company_projects.first.tasks, :id, :name))
-        .time
-          .time_icons
-            =# text_field_tag :hours, '00:00', :size => 8, :class => "hour", :alt => "time", :type => :time
-            =# link_to_max_time(image_tag('fullclock.png'), current_user.company, :object => nil)
-            =# link_to_half_time(image_tag('halfclock.png'), current_user.company, :object => nil)
-            =# link_to_no_time(image_tag('emptyclock.png'), current_user.company, :object => nil)
-            =# link_to image_tag('pencil32.png'), '', :class => 'toggle-time'
-
-    .modal-footer
-      =# link_to t('btn.clear_assignments'), 'javascript:void(0)', :class => 'btn btn-danger clear_assignments', :confirm => t('mass_assign.clear_assignments')
-      =# button_tag t('btn.save'), :class => 'btn success'
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3 Modal header
+  .modal-body
+    %p One fine body…
+  .modal-footer
+    %a.btn{:href => "#"} Close
+    %a.btn.btn-primary{:href => "#"} Save changes

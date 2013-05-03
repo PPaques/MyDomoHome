@@ -25,6 +25,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem "flot-rails"
 
 # Deploy with Capistrano
 group :development, :test do
