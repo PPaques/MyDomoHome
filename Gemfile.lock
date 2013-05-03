@@ -58,6 +58,8 @@ GEM
       multi_json (~> 1.0)
     flot-rails (0.0.3)
       jquery-rails
+    font-awesome-rails (3.0.2.0)
+      railties (>= 3.1)
     haml (4.0.2)
       tilt
     highline (1.6.18)
@@ -160,6 +162,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   daemons
   flot-rails
+  font-awesome-rails
   haml
   i2c (~> 0.2.22)
   jquery-rails
