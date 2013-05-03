@@ -7,8 +7,6 @@ class Home < ActiveRecord::Base
 
   accepts_nested_attributes_for :rooms
 
-  FACTOR_FOR_ADC =9.0909
-
   def update_opening_state
     if Rails.env.production?
       self.openings.each do |opening|
@@ -26,12 +24,10 @@ class Home < ActiveRecord::Base
   end
 
   def update_temperature
-    if Rails.env.production? and false
-      # need the card to test that ...
-      # Here goes the code for getting the data from all the I2C
-      @i2c_port = "/dev/i2c-1"
+    if Rails.env.production?
+
       @i2c_device = ::I2C.create("/dev/i2c-1")
-      @converter_address = 48
+
 
       # Command system
       # SD | C2 | C1 | C0 | PD1 | PD0 | X X
@@ -44,41 +40,43 @@ class Home < ActiveRecord::Base
       #     1    0  Internal reference ON , A/D convert OFF
       #     1    1  Internal reference ON , A/D convert ON (NORMAL MODE)
 
-      # Putting ON the 4 A/D convert with internal reference ON (see asd7828 datasheet)
-      @i2c_device.write(eval(@converter_address), 0b10001100) # channel 0 ON
-      # now reading the value
+      # Constant for pour ADC
+      # Factor => 250/4095 = 0.061050061
+      ADC_FACTOR    = 0.061050061
+      ADC_ADRESS    = 0x48
+      ADC_CHANNEL_0 = 0x8C
+      ADC_CHANNEL_1 = 0xCC
+      ADC_CHANNEL_2 = 0x9C
+      ADC_CHANNEL_3 = 0xDC
+      ADC_CHANNEL_4 = 0xAC
+      ADC_CHANNEL_5 = 0xEC
+      ADC_CHANNEL_6 = 0xBC
+      ADC_CHANNEL_7 = 0xFC
+      ADC_SIZE      = 0x02
+
+      # Read Exterior temperature
+      @i2c_device.write(ADC_ADRESS, ADC_CHANNEL_3)
       sleep 0.1
-      temp_chan0 = @i2c_device.read(eval(@converter_address))
-      temp_chan0 = temp_chan0 * FACTOR_FOR_ADC
-      self.rooms.find('Extérieur').update_attributes(temperature: temp_chan0)
+      temp = @i2c_device.read(ADC_ADRESS , ADC_SIZE).unpack("H*")[0].to_i(16) * ADC_FACTOR
+      self.rooms.find('Extérieur').update_attributes(temperature: temp)
 
-      @i2c_device.write(eval(@converter_address), 0b11001100) # channel 1 ON
-      # now reading the value
+      # Read Salon Temperature
+      @i2c_device.write(ADC_ADRESS, ADC_CHANNEL_4)
       sleep 0.1
-      temp_chan1 = @i2c_device.read(eval(@converter_address))
-      temp_chan1 = temp_chan0 * FACTOR_FOR_ADC
-      self.rooms.find('Salon').update_attributes(temperature: temp_chan1)
+      temp = @i2c_device.read(ADC_ADRESS , ADC_SIZE).unpack("H*")[0].to_i(16) * ADC_FACTOR
+      self.rooms.find('Salon').update_attributes(temperature: temp)
 
-
-      @i2c_device.write(eval(@converter_address), 0b10011100) # channel 2 ON
-      # now reading the value
+      # Read Chambre Temperature
+      @i2c_device.write(ADC_ADRESS, ADC_CHANNEL_5)
       sleep 0.1
-      temp_chan2 = @i2c_device.read(eval(@converter_address))
-      temp_chan2 = temp_chan0 * FACTOR_FOR_ADC
-      self.rooms.find('Chambre').update_attributes(temperature: temp_chan2)
+      temp = @i2c_device.read(ADC_ADRESS , ADC_SIZE).unpack("H*")[0].to_i(16) * ADC_FACTOR
+      self.rooms.find('Chambre').update_attributes(temperature: temp)
 
-      @i2c_device.write(eval(@converter_address), 0b11011100) # channel 3 ON
-      # now reading the value
+      # Read Cuisine Temperature
+      @i2c_device.write(ADC_ADRESS, ADC_CHANNEL_6)
       sleep 0.1
-      temp_chan3 = @i2c_device.read(eval(@converter_address))
-      temp_chan3 = temp_chan0 * FACTOR_FOR_ADC
-      self.rooms.find('Cuisine').update_attributes(temperature: temp_chan3)
-
-      @i2c_device.write(eval(@converter_address), 0b10100000) # channel 4 OFF
-      @i2c_device.write(eval(@converter_address), 0b11100000) # channel 5 OFF
-      @i2c_device.write(eval(@converter_address), 0b10110000) # channel 6 OFF
-      @i2c_device.write(eval(@converter_address), 0b11110000) # channel 7 OFF
-
+      temp = @i2c_device.read(ADC_ADRESS , ADC_SIZE).unpack("H*")[0].to_i(16) * ADC_FACTOR
+      self.rooms.find('Cuisine').update_attributes(temperature: temp)
     end
   end
 
