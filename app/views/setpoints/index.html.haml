@@ -1,0 +1,39 @@
+%h1 Liste des consignes
+%table
+  %tr
+    %th Pièce
+    %th Température
+    %th Heure
+    %th Jour
+    %th{:colspan => "3"} Modification
+  - @setpoints.each do |setpoint|
+    %tr
+      %td= setpoint.room.name
+      %td= setpoint.temperature
+      %td= setpoint.times.strftime("%H:%M")
+      %td= setpoint.day_full
+      %td.colonneedit= link_to 'Voir', setpoint
+      %td.colonneedit= link_to 'Modifier', edit_setpoint_path(setpoint)
+      %td.colonneedit= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+%table.table.table-bordered
+  %tr
+    %th Heure
+    %th Dimanche
+    %th Lundi
+    %th Mardi
+    %th Mercredi
+    %th Jeudi
+    %th Vendredi
+    %th Samedi
+  - for h in 0..23 # boucle sur les heures
+    %tr
+      %td
+        0h#{h}
+      - for d in 0..6
+        %td consigne
+#modal_form.modal.hide
+
+= render "mass_assignments"
+
+= link_to 'Nouvelle consigne', new_setpoint_path

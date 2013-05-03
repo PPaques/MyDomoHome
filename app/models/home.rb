@@ -7,6 +7,34 @@ class Home < ActiveRecord::Base
 
   accepts_nested_attributes_for :rooms
 
+
+
+  # Command system
+  # SD | C2 | C1 | C0 | PD1 | PD0 | X X
+  # SD : sigle ended (1)  or différential (0)
+  # C2-C0 : Channel Selection
+  # PD 1/0 : Power down selection
+  #    PD1  PD0
+  #     0    0  Power down between A/D conversion
+  #     0    1  Internal reference OFF, A/D convert ON
+  #     1    0  Internal reference ON , A/D convert OFF
+  #     1    1  Internal reference ON , A/D convert ON (NORMAL MODE)
+
+  # Constant for pour ADC
+  # Factor => 250/4095 = 0.061050061
+  ADC_FACTOR    = 0.061050061
+  ADC_ADRESS    = 0x48
+  ADC_I2C_DEV   = "/dev/i2c-1"
+  ADC_CHANNEL_0 = 0x8C
+  ADC_CHANNEL_1 = 0xCC
+  ADC_CHANNEL_2 = 0x9C
+  ADC_CHANNEL_3 = 0xDC
+  ADC_CHANNEL_4 = 0xAC
+  ADC_CHANNEL_5 = 0xEC
+  ADC_CHANNEL_6 = 0xBC
+  ADC_CHANNEL_7 = 0xFC
+  ADC_SIZE      = 0x02
+
   def update_opening_state
     if Rails.env.production?
       self.openings.each do |opening|
@@ -26,33 +54,7 @@ class Home < ActiveRecord::Base
   def update_temperature
     if Rails.env.production?
 
-      @i2c_device = ::I2C.create("/dev/i2c-1")
-
-
-      # Command system
-      # SD | C2 | C1 | C0 | PD1 | PD0 | X X
-      # SD : sigle ended (1)  or différential (0)
-      # C2-C0 : Channel Selection
-      # PD 1/0 : Power down selection
-      #    PD1  PD0
-      #     0    0  Power down between A/D conversion
-      #     0    1  Internal reference OFF, A/D convert ON
-      #     1    0  Internal reference ON , A/D convert OFF
-      #     1    1  Internal reference ON , A/D convert ON (NORMAL MODE)
-
-      # Constant for pour ADC
-      # Factor => 250/4095 = 0.061050061
-      ADC_FACTOR    = 0.061050061
-      ADC_ADRESS    = 0x48
-      ADC_CHANNEL_0 = 0x8C
-      ADC_CHANNEL_1 = 0xCC
-      ADC_CHANNEL_2 = 0x9C
-      ADC_CHANNEL_3 = 0xDC
-      ADC_CHANNEL_4 = 0xAC
-      ADC_CHANNEL_5 = 0xEC
-      ADC_CHANNEL_6 = 0xBC
-      ADC_CHANNEL_7 = 0xFC
-      ADC_SIZE      = 0x02
+      @i2c_device = ::I2C.create(ADC_I2C_DEV)
 
       # Read Exterior temperature
       @i2c_device.write(ADC_ADRESS, ADC_CHANNEL_3)
