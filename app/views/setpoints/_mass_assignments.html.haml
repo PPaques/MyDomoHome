@@ -1,9 +1,17 @@
-#mass_assign.modal.fade
+#mass_assign.modal.fade.hide
   .modal-header
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-    %h3 Modal header
-  .modal-body
-    %p One fine body…
-  .modal-footer
-    %a.btn{:href => "#"} Close
-    %a.btn.btn-primary{:href => "#"} Save changes
+    = link_to '✖', 'javascript:void(0)', :class => 'close', :"data-dismiss" => "modal"
+    %h3
+      Consigne
+  %form
+    .modal-body
+      - Room.all.each do |room|
+        -if !room.isoutside?
+          .field
+            =room.name
+            %br
+            = text_field_tag "room_temperature_#{room.id}", '',  :type => :number
+    .modal-footer
+      %a.btn{:href => 'javascript:void(0)', :"data-dismiss" => "modal"}
+        Annuler
+      = button_tag "Enregistrer", :class => 'btn btn-primary'

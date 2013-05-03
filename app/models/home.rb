@@ -4,9 +4,12 @@ class Home < ActiveRecord::Base
 
   has_many :rooms, inverse_of: :home
   has_many :openings
+  has_many :setpoints, through: :room
+
+  before_update :merge_setpoints
 
   accepts_nested_attributes_for :rooms
-
+  accepts_nested_attributes_for :setpoints
 
 
   # Command system

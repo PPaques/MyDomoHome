@@ -42,3 +42,10 @@ HeatingLog.delete_all
 
 #cleaning setpoint
 Setpoint.delete_all
+for d in 0..6
+  for h in 0..23
+    Setpoint.create(room: Room.find_by_name("Salon"), temperature: 20, day: d, times: Time.new(2002, 10, 31, h, 0, 0))
+    Setpoint.create(room: Room.find_by_name("Chambre"), temperature: 22, day: d, times: Time.new(2002, 10, 31, h, 0, 0))
+    Setpoint.create(room: Room.find_by_name("Cuisine"), temperature: 17, day: d, times: Time.new(2002, 10, 31, h, 0, 0))
+  end
+end
