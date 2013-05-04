@@ -1,42 +1,30 @@
-%h1 Liste des consignes
-//%table
-//  %tr
-//    %th Pièce
-//    %th Température
-//    %th Heure
-//    %th Jour
-//    %th{:colspan => "3"} Modification
-//  - @setpoints.each do |setpoint|
-//    %tr
-//      %td= setpoint.room.name
-//      %td= setpoint.temperature
-//      %td= setpoint.times.strftime("%H:%M")
-//      %td= setpoint.day_full
-//      %td.colonneedit= link_to 'Voir', setpoint
-//      %td.colonneedit= link_to 'Modifier', edit_setpoint_path(setpoint)
-//      %td.colonneedit= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' }
-%br
+.row-fluid
+  .span5
+    %table#setpoints_planning.table.table-bordered.table-condensed
+      %thead
+        %tr
+          %th.span2 Heure
+          %th.span1 Dimanche
+          %th.span1 Lundi
+          %th.span1 Mardi
+          %th.span1 Mercredi
+          %th.span1 Jeudi
+          %th.span1 Vendredi
+          %th.span1 Samedi
+      %tbody
+        - for h in 0..23 # boucle sur les heures
+          %tr
+            %th
+              = "#{h}H"
+            - for d in 0..6
+              - temp_data_html = ""
+              - id = []
+              - @setpoints.select { |set| set.day == d && set.times.hour == h }.each do |setpoint|
+                - temp_data_html += "#{setpoint.room.name} : #{setpoint.temperature} <br>"
+                - id.append setpoint.id
+              %td.center.sel_item{:rel => "popover", :data => { "id" => id.join('-'), "content" => temp_data_html.html_safe}}
+                %i.icon-info-sign
 
-%table#setpoints_planning.table.table-bordered.table-condensed.span5
-  %thead
-    %tr
-      %th Heure
-      %th Dimanche
-      %th Lundi
-      %th Mardi
-      %th Mercredi
-      %th Jeudi
-      %th Vendredi
-      %th Samedi
-  %tbody
-    - for h in 0..23 # boucle sur les heures
-      %tr
-        %td
-          = "0h#{h}"
-        - for d in 0..6
-          %td.sel_item{:rel => "popover", :title => "#{Mardi} - #{user.name}", :data => { "date" => day, "content" => assignments_popover_value(assignments, day), "assignments-url" => company_user_assignments_path(user.company, user, :day => day.to_s) }, :class => "#{'today' if Date.today == day}"},:'data-time' => "#{d}-#{h}"}
-            = "#{d}-#{h}"
+
 
 = render "mass_assignments"
-
-= link_to 'Nouvelle consigne', new_setpoint_path

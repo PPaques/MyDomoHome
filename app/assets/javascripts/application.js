@@ -20,5 +20,4 @@
 //= require jquery.flot.resize
 //= require flot.time
 //= require jquery_nested_form
-//= require base
-//= require_tree
+//= require_tree .

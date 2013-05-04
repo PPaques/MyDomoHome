@@ -3,8 +3,8 @@ $ ->
     filter: ".sel_item",
     stop: (event, ui) ->
       window.mass_assign = {}
-      window.mass_assign.dates = $(this).find('.ui-selected').map (i, item) -> $(item).data('time')
-      console.log window.mass_assign.dates
+      window.mass_assign.ids = $(this).find('.ui-selected').map (i, item) -> $(item).data('id').split("-")
+      console.log window.mass_assign.ids
       $('#mass_assign').modal('show')
 
 
@@ -23,3 +23,6 @@ $ ->
 
   $('#mass_assign').on 'hide', () ->
     $('.ui-selected').removeClass('ui-selected')
+
+
+  $('td[rel="popover"]').popover({placement: "top",trigger: "hover",container: 'table', html: 'true'})

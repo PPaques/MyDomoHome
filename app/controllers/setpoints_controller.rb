@@ -3,7 +3,7 @@ class SetpointsController < ApplicationController
   # GET /setpoints
   # GET /setpoints.json
   def index
-    @setpoints = Setpoint.all
+    @setpoints = Setpoint.unscoped.order("DATE_FORMAT(times, '%H'), day ASC").all(:include => :room)
 
     respond_to do |format|
       format.html # index.html.erb
