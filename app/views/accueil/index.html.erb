@@ -46,9 +46,11 @@
 			<div class="span4">
 				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique températures</h3></div>
 				<div class="widget-content">
+					<ul class="history-home">
 						<% TemperatureMeasure.all.each do |temperature|	%>
-							<p><%= temperature.created_at %> - <%= temperature.room.name %> - <%= temperature.temperature %> °C</p>
+							<li><span class="label label-warning"><%= temperature.created_at.strftime("%H:%M:%S") %></span> <%= temperature.room.name %> - <%= temperature.temperature %> °C</li>
 						<% end %>
+					</ul>
 				</div>
 			</div>
 			<div class="span4">

@@ -11,5 +11,10 @@
  *= require font-awesome
  *= require jquery.ui.all
  *= require_self
- *= require_tree .
+ *= !!!!!!require_tree .
+ *= require base
+ *= require base.responsive
+ *= require bootstrap_and_overrides
+ *= require font-awesome-ie7.min
+ *= require setpoints
  */

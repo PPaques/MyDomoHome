@@ -604,3 +604,16 @@ li.time-display-right {
     color: #AAA;
     text-shadow: none;
 }
+
+ul.history-home {
+    margin: 0;
+}
+
+ul.history-home li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+ul.history-home li span.label-warning {
+    margin-right: 10px;
+}
