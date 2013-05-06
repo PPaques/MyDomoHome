@@ -14,7 +14,7 @@
 //= require timeDisplay
 //= require jquery
 //= require jquery_ujs
-//= !!!!!require jquery.ui.all
+//= require jquery.ui.all
 //= require twitter/bootstrap
 //= require jquery.flot
 //= require jquery.flot.resize
