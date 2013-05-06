@@ -4,10 +4,14 @@ class HistoryController < ApplicationController
   def getRecentJSON
 
   # { label: "Chambre", color: "#FF9900", data: [ [t, 1], [t+100000, -14], [t+200000, 5] ] },
-    if params[:time].to_i >= 1
-      time = params[:time].to_i
+    if params[:time].to_i >= 0
+      if params[:time].to_i == 0
+        time = 100000
+      else
+        time = params[:time].to_i
+      end
     else
-      time = 24
+      time = 24 * 7
     end
     if params[:room].to_i >= 1
       @rooms = Room.where(:id => params[:room].to_i)
@@ -31,6 +35,10 @@ class HistoryController < ApplicationController
   end
 
   def index
+    @time = 24*7
+    if params[:time].to_i >= 0
+      @time = params[:time].to_i
+    end
     @rooms = Room.all
   end
 end
