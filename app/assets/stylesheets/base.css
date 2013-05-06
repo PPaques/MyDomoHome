@@ -443,8 +443,12 @@ section .row-fluid [class*= "span"] {
     width: 100%;
 }
 
-.flot-height-300 {
+.height-300 {
     height: 300px;
+}
+
+.height-200 {
+    height: 200px;
 }
 
 div.interrupteur input[type=checkbox] {
@@ -614,6 +618,13 @@ ul.history-home li {
     margin-bottom: 5px;
 }
 
-ul.history-home li span.label-warning {
-    margin-right: 10px;
+ul.history-home li span.label-room {
+    margin-right: 5px;
 }
+
+div.history-top {
+    position: absolute;
+    right: 20px;
+    top: 40px;
+}
+

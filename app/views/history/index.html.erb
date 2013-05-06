@@ -1,0 +1,117 @@
+<h1>Historique</h1>
+<div class="history-top">
+    <div class="btn-group" data-toggle="buttons-radio">
+	    <button class="btn btn-small">Toujours</button>
+	    <button class="btn btn-small">1 an</button>
+	    <button class="btn btn-small">6 mois</button>
+	    <button class="btn btn-small">1 mois</button>
+	    <button class="btn btn-small active">1 semaine</button>
+	    <button class="btn btn-small">24 heures</button>
+    </div>
+</div>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="widget">
+			<div class="widget-header"><i class="icon-bookmark"></i><h3>Évolution globale</h3></div>
+			<div class="widget-content">
+				<div id="HistoryGlobal" class="flot flot-width-full height-200">
+					<div class="spinner"><i class="icon-spinner icon-spin"></i></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<% index = 1 %>
+	<% @rooms.each do |room| %>
+		<div class="span6">
+			<div class="widget">
+				<div class="widget-header"><i class="icon-bookmark"></i><h3><%= room.name %></h3></div>
+				<div class="widget-content">
+					<div id="History<%= room.id %>" class="flot flot-width-full height-200">
+						<div class="spinner"><i class="icon-spinner icon-spin"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% if (index % 2) == 0 %>
+			</div>
+			<div class="row-fluid">
+		<% end %>
+		<% index = index + 1 %>
+	<% end %>
+</div>
+
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script type="text/javascript">
+function graphes(){
+    // Graphe des mesures récentes
+	var t = (new Date()).getTime();
+	var options = {
+        grid : {
+                color: "#AAA",
+                backgroundColor: { colors: ["#444", "#333"] },
+                hoverable: true,
+                borderWidth: 1
+            },
+		legend: {
+				position: "sw",
+                backgroundColor: "#aaaaaa",
+                backgroundOpacity: 0.3
+			},
+		xaxis: {
+				mode: "time",
+				timeformat: "%H:%M",
+				timezone: "browser",
+                color: "#666"
+			},
+        yaxis: {
+                color: "#888"
+        }
+	};
+	var options2 = {
+        grid : {
+                color: "#AAA",
+                backgroundColor: { colors: ["#444", "#333"] },
+                hoverable: true,
+                borderWidth: 1
+            },
+		legend: {
+				position: "nw",
+                backgroundColor: "#aaaaaa",
+                backgroundOpacity: 0.3
+			},
+		xaxis: {
+				mode: "time",
+				timeformat: "%H:%M",
+				timezone: "browser",
+                color: "#666"
+			},
+        yaxis: {
+                color: "#888"
+        }
+	};
+
+	$.ajax({
+		url: "/getRecentJSON",
+		method: 'GET',
+		dataType: 'json',
+		success: function(json){
+			data = json;
+			$("#HistoryGlobal").plot(data, options);
+		}
+	});
+	<% @rooms.each do |room| %>
+		$.ajax({
+			url: "/getRecentJSON?room=<%= room.id %>",
+			method: 'GET',
+			dataType: 'json',
+			success: function(json){
+				data = json;
+				$("#History<%= room.id %>").plot(data, options2);
+			}
+		});
+	<% end %>
+}
+</script>

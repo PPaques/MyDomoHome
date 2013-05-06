@@ -15,8 +15,8 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <%= stylesheet_link_tag :application %>
-    <%= stylesheet_link_tag "base", :media => "all" %>
-    <%= stylesheet_link_tag "base.responsive", :media => "all" %>
+    <!-- <%= stylesheet_link_tag "base", :media => "all" %> -->
+    <!-- <%= stylesheet_link_tag "base.responsive", :media => "all" %> -->
   </head>
   <body>
 <header>
@@ -43,12 +43,8 @@
       <div class="container-fluid">
         <ul class="mainnav">
           <%= tab_link_to raw("<i class=\"icon-home\"></i><span>Home</span>"), root_path, params[:controller] == 'accueil'  %>
-          <li>
-            <a href="#" title="Historique des mesures">
-              <i class="icon-bar-chart"></i>
-              <span>Historique</span>
-            </a>
-          </li>
+
+          <%= tab_link_to raw("<i class=\"icon-bar-chart\"></i><span>Historique</span>"), history_index_path, params[:controller] == 'history'  %>
 
           <%= tab_link_to raw("<i class=\"icon-tasks\"></i><span>Consignes</span>"), setpoints_path, params[:controller] == 'setpoints'  %>
           <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), parameters_path, params[:controller] == 'parameters'  %>
