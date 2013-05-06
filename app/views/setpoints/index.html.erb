@@ -2,11 +2,11 @@
 
 <table class="table table-striped table-bordered">
   <tr>
-    <th>Pièce</th>
-    <th>Température</th>
-    <th>Heure</th>
-    <th>Jour</th>
-    <th colspan="3"> Modification</th>
+    <th class="span3">Pièce</th>
+    <th class="span2">Température</th>
+    <th class="span3">Heure</th>
+    <th class="span2">Jour</th>
+    <th colspan="3" class="span2"> Modification</th>
   </tr>
 
 <% @setpoints.each do |setpoint| %>
@@ -15,9 +15,17 @@
     <td><%= setpoint.temperature %></td>
     <td><%= setpoint.times.strftime("%H:%M") %></td>
     <td><%= setpoint.day_full %></td>
-    <td class="btn btn-warning"><%= link_to 'Voir', setpoint %></td>
-    <td class="btn btn-warning"><%= link_to 'Modifier', edit_setpoint_path(setpoint) %></td>
-    <td class="btn btn-warning"><%= link_to 'Supprimer', setpoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    
+    <td ><%= link_to raw('<span class="btn btn-warning"><i class="icon-trash icon-eye-open" title="Voir"></i></span>'), setpoint %>
+
+    <td ><%= link_to raw('<span class="btn btn-warning"><i class="icon-trash icon-pencil" title="Modifier"></i></span>'), edit_setpoint_path(setpoint) %>
+       </td>
+    <td ><%= link_to setpoint, method: :delete, data: { confirm: 'Are you sure?' } do %> 
+        <span class="btn btn-danger"><i class="icon-trash icon-white"></i></span>
+
+
+      <% end %></td>
   </tr>
 <% end %>
 </table>

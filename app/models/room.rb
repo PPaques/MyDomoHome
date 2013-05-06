@@ -23,20 +23,25 @@ class Room < ActiveRecord::Base
   end
 
   def consigne
-    20
-    # set = self.setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min}").order("times DESC").first
-    # i=1
-    # while (set.nil? or i< 6)  
-    #   self.setpoints.unscoped.where("day=#{(Time.now-i.days).wday}").order("times ASC").first
-    #   i+=1
-    # end
+ 
+     set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
+     i=1
+     j=1
+     while (set.nil? and j< 7)  
+        if i=-1
+           i=6 
+        end
+         set=setpoints.unscoped.where("day=#{(Time.now.midnight-i.day).wday} AND room_id=#{self.id}").order("times ASC").first
+      j+=1
+      i+=1
+      end
 
 
-    # if set.nil?
-    #   20
-    # else
-    #   set.temperature
-    # end
+      if set.nil?
+       20
+      else
+        set.temperature
+      end
   end
 
   def self.isoutside?

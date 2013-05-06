@@ -15,7 +15,8 @@
   </div>
   <div class="field">
     <%= f.label :temperature , "Température"%><br />
-    <%= f.text_field :temperature %>
+    <%= f.number_field :temperature, :in => -40...50  %>
+    
   </div>
   <div class="field">
     <%= f.label :times, "Heure" %><br />
