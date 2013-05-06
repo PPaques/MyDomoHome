@@ -4,6 +4,7 @@ class Setpoint < ActiveRecord::Base
   belongs_to :room
   default_scope :order => "day ASC, DATE_FORMAT(times, '%H%m')"
 
+  validates :room, :times, :day, :temperature, :presence => true
   validates :temperature, :inclusion => 6..40
 
   def day_full

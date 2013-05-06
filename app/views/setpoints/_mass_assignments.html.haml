@@ -1,11 +1,16 @@
-#mass_assign.modal.fade.hide
+-@rooms = Room.all
+:javascript
+  window.room_id = #{@rooms.collect { |obj| obj.id }}
+
+#mass_assign.modal.fade.hide{:data => {:url => update_multiple_setpoints_url}}
   .modal-header
     = link_to '✖', 'javascript:void(0)', :class => 'close', :"data-dismiss" => "modal"
     %h3
       Consigne
   %form
     .modal-body
-      - Room.all.each do |room|
+
+      - @rooms.each do |room|
         -if !room.isoutside?
           .field
             =room.name
@@ -14,4 +19,4 @@
     .modal-footer
       %a.btn{:href => 'javascript:void(0)', :"data-dismiss" => "modal"}
         Annuler
-      = button_tag "Enregistrer", :class => 'btn btn-primary'
+      %a.submit.btn.btn-primary Enregistrer

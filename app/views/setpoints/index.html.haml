@@ -18,11 +18,12 @@
               = "#{h}H"
             - for d in 0..6
               - temp_data_html = ""
-              - id = []
+              - ids = {}
               - @setpoints.select { |set| set.day == d && set.times.hour == h }.each do |setpoint|
                 - temp_data_html += "#{setpoint.room.name} : #{setpoint.temperature} <br>"
-                - id.append setpoint.id
-              %td.center.sel_item{:rel => "popover", :data => { "id" => id.join('-'), "content" => temp_data_html.html_safe}}
+                - ids[setpoint.room_id] = [] if ids[setpoint.room_id].nil?
+                - ids[setpoint.room_id].append setpoint.id
+              %td.center.sel_item{:rel => "popover", :data => { "id" => ids.to_json, "content" => temp_data_html.html_safe}}
                 %i.icon-info-sign
 
 

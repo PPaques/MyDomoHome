@@ -9,7 +9,6 @@ class Home < ActiveRecord::Base
   before_update :merge_setpoints
 
   accepts_nested_attributes_for :rooms
-  accepts_nested_attributes_for :setpoints
 
 
   # Command system

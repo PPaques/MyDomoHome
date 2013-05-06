@@ -82,4 +82,20 @@ class SetpointsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_multiple
+    setpoint_ids = []
+    params[:setpoints_update].each_with_index do |(key,value),index|
+     setpoint_ids.push key
+    end
+    @setpoints = Setpoint.find(setpoint_ids)
+    @setpoints.each do |setpoint|
+      setpoint.update_attributes!(temperature: params[:setpoints_update][setpoint.id.to_s].to_f)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to setpoints_url }
+      format.json { head :no_content }
+    end
+  end
 end
