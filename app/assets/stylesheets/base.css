@@ -444,7 +444,7 @@ section .row-fluid [class*= "span"] {
 }
 
 .height-300 {
-    height: 300px;
+    height: 250px;
 }
 
 .height-200 {
@@ -628,3 +628,19 @@ div.history-top {
     top: 40px;
 }
 
+form.edit_home div.fields {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+div.flot.height-200 div.spinner {
+    color: #CCCCCC;
+    font-size: 5em;
+    text-align: center;
+    text-shadow: none;
+    padding-top: 60px;
+}
+
+li.hello {
+    color: #999999;
+}

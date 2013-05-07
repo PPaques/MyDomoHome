@@ -3,6 +3,7 @@
 				<div class="widget">
 					<div class="widget-header"><i class="icon-bookmark"></i><h3>État actuel</h3></div>
 					<div class="widget-content">
+						<div style="height:246px" />
 						<%= nested_form_for @home do |f| %>
 							<% index = 0 %>
 							<%= f.fields_for :rooms do |room| %>
@@ -31,14 +32,16 @@
 							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right', :disabled => true if @home.mode_auto%>
 							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
 						<% end %>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="span6">
 				<div class="widget">
 					<div class="widget-header"><i class="icon-signal"></i><h3>Mesures récentes</h3></div>
-					<% #http://railscasts.com/episodes/324-passing-data-to-javascript rails cast pour savoir comment passer des arguments rails vers le javascript d'une belle manière %>
-					<div class="widget-content"><div id="recentTemps" class="flot flot-width-full height-300"><div class="spinner"><i class="icon-spinner icon-spin"></i></div></div></div>
+					<div class="widget-content">
+						<div id="recentTemps" class="flot flot-width-full height-300"><div class="spinner"><i class="icon-spinner icon-spin"></i></div></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -68,6 +71,7 @@
 				<div class="widget-content">
 					<ul class="history-home">
 					<% HeatingLog.all.each do |heating_log| %>
+						<% next if heating_log.room.isoutside? %>
 						<li><span class="label"><%= heating_log.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room" style="background-color:<%= heating_log.room.color %>;"><%= heating_log.room.name %></span> <%= heating_log.heating ? "Allumé" : "Éteint" %></li>
 					<% end %>
 					</ul>

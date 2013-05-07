@@ -1,12 +1,12 @@
 <h1>Historique</h1>
 <div class="history-top">
     <div class="btn-group" data-toggle="buttons-radio">
-	    <button class="btn btn-small">Toujours</button>
-	    <button class="btn btn-small">1 an</button>
-	    <button class="btn btn-small">6 mois</button>
-	    <button class="btn btn-small">1 mois</button>
-	    <button class="btn btn-small active">1 semaine</button>
-	    <button class="btn btn-small">24 heures</button>
+	    <a href="<%= history_index_path %>?time=0" class="btn btn-small<%= ' active' if @time == 0 %>">Toujours</a>
+	    <a href="<%= history_index_path %>?time=8766" class="btn btn-small<%= ' active' if @time == 8766 %>">1 an</a>
+	    <a href="<%= history_index_path %>?time=4392" class="btn btn-small<%= ' active' if @time == 4392 %>">6 mois</a>
+	    <a href="<%= history_index_path %>?time=720" class="btn btn-small<%= ' active' if @time == 720 %>">1 mois</a>
+	    <a href="<%= history_index_path %>?time=168" class="btn btn-small<%= ' active' if @time == 168 %>">1 semaine</a>
+	    <a href="<%= history_index_path %>?time=24" class="btn btn-small<%= ' active' if @time == 24 %>">24 heures</a>
     </div>
 </div>
 <div class="row-fluid">
@@ -78,9 +78,7 @@ function graphes(){
                 borderWidth: 1
             },
 		legend: {
-				position: "nw",
-                backgroundColor: "#aaaaaa",
-                backgroundOpacity: 0.3
+				show:false
 			},
 		xaxis: {
 				mode: "time",
@@ -94,7 +92,7 @@ function graphes(){
 	};
 
 	$.ajax({
-		url: "/getRecentJSON",
+		url: "/getRecentJSON?time=<%= @time %>",
 		method: 'GET',
 		dataType: 'json',
 		success: function(json){
@@ -104,7 +102,7 @@ function graphes(){
 	});
 	<% @rooms.each do |room| %>
 		$.ajax({
-			url: "/getRecentJSON?room=<%= room.id %>",
+			url: "/getRecentJSON?room=<%= room.id %>&time=<%= @time %>",
 			method: 'GET',
 			dataType: 'json',
 			success: function(json){
