@@ -1,30 +1,42 @@
+%h1 Consignes
+%p Cliquez sur une case ou sur un groupe de cases pour modifier les consignes à appliquer.
+.history-top
+  .btn-group{"data-toggle" => "buttons-checkbox"}
+    - btns_html = ""
+    - @setpoints.select { |set| set.day == 0 && set.times.hour == 0 }.each do |setpoint|
+      - btns_html += "<button type=\"button\" class=\"btn active checkbox-room\" id=\"show-room-#{setpoint.room_id}\"><span class=\"label\" style=\"background-color:#{setpoint.room.color}\">#{setpoint.room.name}</span></button>"
+    = raw(btns_html)
 .row-fluid
-  .span5
-    %table#setpoints_planning.table.table-bordered.table-condensed
+  .span12
+    %table#setpoints_planning.table.table-bordered.table-condensed.table-striped
       %thead
         %tr
-          %th.span2 Heure
-          %th.span1 Dimanche
-          %th.span1 Lundi
-          %th.span1 Mardi
-          %th.span1 Mercredi
-          %th.span1 Jeudi
-          %th.span1 Vendredi
-          %th.span1 Samedi
+          %th Heure
+          %th.day Dimanche
+          %th.day Lundi
+          %th.day Mardi
+          %th.day Mercredi
+          %th.day Jeudi
+          %th.day Vendredi
+          %th.day Samedi
       %tbody
         - for h in 0..23 # boucle sur les heures
           %tr
             %th
-              = "#{h}H"
+              = "#{h}H00"
             - for d in 0..6
               - temp_data_html = ""
+              - cell_data_html = ""
               - ids = {}
               - @setpoints.select { |set| set.day == d && set.times.hour == h }.each do |setpoint|
-                - temp_data_html += "#{setpoint.room.name} : #{setpoint.temperature} <br>"
+                - temp_data_html += "<span class=\"label\" style=\"background-color:#{setpoint.room.color};\">#{setpoint.room.name}</span> #{setpoint.temperature} °C<br>"
+                - cell_data_html += "<span class=\"label show-room-#{setpoint.room_id}\" style=\"background-color:#{setpoint.room.color};\">#{setpoint.temperature}°C</span> "
                 - ids[setpoint.room_id] = [] if ids[setpoint.room_id].nil?
                 - ids[setpoint.room_id].append setpoint.id
-              %td.center.sel_item{:rel => "popover", :data => { "id" => ids.to_json, "content" => temp_data_html.html_safe}}
-                %i.icon-info-sign
+              -#%td.cons.sel_item{:rel => "popover", :data => { "id" => ids.to_json, "content" => temp_data_html.html_safe}}
+              %td.cons.sel_item{:data => { "id" => ids.to_json}}
+                = raw(cell_data_html)
+
 
 
 

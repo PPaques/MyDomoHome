@@ -1,3 +1,6 @@
 $(document).ready(function() {
-	graphes();
+	if(typeof graphes == 'function')
+	{
+		graphes();
+	}
 });

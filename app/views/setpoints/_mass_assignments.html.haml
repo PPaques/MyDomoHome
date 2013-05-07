@@ -7,15 +7,16 @@
     = link_to '✖', 'javascript:void(0)', :class => 'close', :"data-dismiss" => "modal"
     %h3
       Consigne
-  %form
+  %form.form-horizontal
     .modal-body
 
       - @rooms.each do |room|
         -if !room.isoutside?
-          .field
-            =room.name
-            %br
-            = text_field_tag "room_temperature_#{room.id}", '',  :type => :number
+          .control-group
+            %label.control-label 
+              = room.name
+            .controls 
+              = text_field_tag "room_temperature_#{room.id}", '',  :type => :number
     .modal-footer
       %a.btn{:href => 'javascript:void(0)', :"data-dismiss" => "modal"}
         Annuler

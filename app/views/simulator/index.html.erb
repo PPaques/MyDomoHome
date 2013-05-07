@@ -1,31 +1,46 @@
 <h1>Simulateur</h1>
 <p>Le simulateur vous permet de forcer la modification de températures ou d'états d'ouvertures.</p>
 <%= form_tag 'simulator', method: :post, class: "form-horizontal" %>
-
-  <h2>Temperatures</h2>
-    <% @rooms.each do |room| %>
-      <div class="control-group">
-        <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>
-        <div class="controls">
-          <%= number_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
+<div class="row-fluid">
+      <div class="span6">
+        <div class="widget">
+          <div class="widget-header"><i class="icon-bookmark"></i><h3>Temperatures</h3></div>
+          <div class="widget-content">
+            <% @rooms.each do |room| %>
+            <div class="control-group">
+              <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>
+              <div class="controls">
+                <%= number_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
+              </div>
+            </div>
+            <% end %>
+            <div class="control-group">
+              <div class="controls">
+                <%= submit_tag "Enregistrer", :class => 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    <% end %>
 
-
-  <h2>Ouvertures</h2>
-    <% @openings.each do |opening| %>
-      <div class="control-group">
-        <label class="control-label" for="opening_<%= opening.id%>"><%= opening.name %></label>
-        <div class="controls">
-          <%= select_tag "opening_#{opening.id}", "<option#{' selected="selected"' if opening.opened}>open</option><option#{' selected="selected"' unless opening.opened}>closed</option>".html_safe %>
+      <div class="span6">
+        <div class="widget">
+          <div class="widget-header"><i class="icon-bookmark"></i><h3>Ouvertures</h3></div>
+          <div class="widget-content">
+            <% @openings.each do |opening| %>
+            <div class="control-group">
+              <label class="control-label" for="opening_<%= opening.id%>"><%= opening.name %></label>
+              <div class="controls">
+                <%= select_tag "opening_#{opening.id}", "<option#{' selected="selected"' if opening.opened}>Ouverte</option><option#{' selected="selected"' unless opening.opened}>Fermée</option>".html_safe %>
+              </div>
+            </div>
+            <% end %>
+            <div class="control-group">
+              <div class="controls">
+                <%= submit_tag "Enregistrer", :class => 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    <% end %>
-
-  <div class="control-group">
-    <div class="controls">
-      <%= submit_tag "Enregistrer", :class => 'btn btn-primary' %>
-    </div>
-  </div>
 </form>

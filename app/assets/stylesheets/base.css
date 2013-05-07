@@ -86,7 +86,7 @@ html {
 }
 body {
     font: 13px/1.7em 'Open Sans';
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     background: #EEEEEE;
 }
 p {
@@ -643,4 +643,39 @@ div.flot.height-200 div.spinner {
 
 li.hello {
     color: #999999;
+}
+
+#setpoints_planning .row-fluid [class*= "span"]{
+    padding-bottom: 5px;
+}
+
+#setpoints_planning th {
+    font-weight: 700;
+    text-align: center;
+}
+
+#setpoints_planning .ui-selecting {
+  background: silver;
+}
+
+#setpoints_planning .ui-selected {
+  background: gray;
+}
+
+#setpoints_planning td.cons {
+  text-align: center;
+  cursor: pointer;
+}
+#setpoints_planning td span.label {
+    display: block;
+    /*width: 40px;*/
+    margin: 1px 0;
+}
+
+#setpoints_planning th.day {
+    width: 13%;
+}
+
+.modal a.close {
+    color: #000;
 }

@@ -31,12 +31,11 @@ $ ->
       success: (data, textStatus, jqXHR) ->
         window.location.reload()
       error: (data, textStatus, jqXHR)->
-        alert("Température incorrecte")
+        alert("TempÃ©rature incorrecte")
 
   $('#mass_assign').on 'hide', () ->
     $('.ui-selected').removeClass('ui-selected')
 
 
   $('td[rel="popover"]').popover({placement: "top",trigger: "hover",container: 'table', html: 'true'})
-
 

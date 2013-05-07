@@ -19,8 +19,8 @@ class SimulatorController < ApplicationController
 
       if type.match(/opening_/)
         #logger.info type.gsub(/opening_/,'')
-        Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: true) if data == "open"
-        Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: false) if data == "closed"
+        Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: true) if data == "Ouverte"
+        Opening.find_by_id(type.gsub(/opening_/,'')).update_attributes(opened: false) if data == "Fermée"
       end
 
 
