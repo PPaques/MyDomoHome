@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Room < ActiveRecord::Base
-  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope
+  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope, :color
 
   belongs_to :home, inverse_of: :rooms
   has_many :setpoints, inverse_of: :room
@@ -26,13 +26,8 @@ class Room < ActiveRecord::Base
  
      set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
      i=1
-     j=1
-     while (set.nil? and j< 7)  
-        if i=-1
-           i=6 
-        end
+     while (set.nil? and i< 7)  
          set=setpoints.unscoped.where("day=#{(Time.now.midnight-i.day).wday} AND room_id=#{self.id}").order("times ASC").first
-      j+=1
       i+=1
       end
 

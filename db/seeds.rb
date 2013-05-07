@@ -14,10 +14,10 @@ Home.delete_all
 Home.create(mode_auto: true)
 
 Room.delete_all
-Room.create(name: "Extérieur",  gpio_heat_number: 14,heating: false, light: false, temperature: 20, home: Home.first, isoutside: true, temperature_slope: "equ")
-Room.create(name: "Salon",      gpio_heat_number: 15,heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ")
-Room.create(name: "Cuisine",    gpio_heat_number: 18,heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ")
-Room.create(name: "Chambre",    gpio_heat_number: 23,heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ")
+Room.create(name: "Extérieur",  gpio_heat_number: 14,heating: false, light: false, temperature: 20, home: Home.first, isoutside: true, temperature_slope: "equ", color:"#006CFF")
+Room.create(name: "Salon",      gpio_heat_number: 15,heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#EE3C19")
+Room.create(name: "Cuisine",    gpio_heat_number: 18,heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#AED100")
+Room.create(name: "Chambre",    gpio_heat_number: 23,heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#FF9900")
 
 Opening.delete_all
 Opening.create(name: "Porte entrée",    gpio_number: 22, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first)
@@ -42,3 +42,10 @@ HeatingLog.delete_all
 
 #cleaning setpoint
 Setpoint.delete_all
+for d in 0..6
+  for h in 0..23
+    Setpoint.create(room: Room.find_by_name("Salon"), temperature: 20, day: d, times: Time.new(2002, 10, 31, h, 0, 0))
+    Setpoint.create(room: Room.find_by_name("Chambre"), temperature: 22, day: d, times: Time.new(2002, 10, 31, h, 0, 0))
+    Setpoint.create(room: Room.find_by_name("Cuisine"), temperature: 17, day: d, times: Time.new(2002, 10, 31, h, 0, 0))
+  end
+end

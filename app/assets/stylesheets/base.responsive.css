@@ -107,4 +107,22 @@
 	aside > .nav > li > a:link, aside > .nav > li > a:visited {
 	    padding-right: 10px;
 	}
+
+	section div.container-fluid {
+	    padding: 10px;
+	}
+
+	.piece h4 {
+		padding-top: 0;
+		font-size: 1.1em;
+	}
+
+	.piece .temperature {
+		font-size: 1.2em;
+	}
+
+	.piece .consigne {
+		top:-1px;
+		font-size: 0.85em;
+	}
 }

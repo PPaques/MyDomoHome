@@ -1,7 +1,5 @@
-<h1>Simulator</h1>
-<p>The simulator admit you to force to change a temperature.</p>
-
-
+<h1>Simulateur</h1>
+<p>Le simulateur vous permet de forcer la modification de températures ou d'états d'ouvertures.</p>
 <%= form_tag 'simulator', method: :post, class: "form-horizontal" %>
 
   <h2>Temperatures</h2>
@@ -15,7 +13,7 @@
     <% end %>
 
 
-  <h2>Openings</h2>
+  <h2>Ouvertures</h2>
     <% @openings.each do |opening| %>
       <div class="control-group">
         <label class="control-label" for="opening_<%= opening.id%>"><%= opening.name %></label>
@@ -27,7 +25,7 @@
 
   <div class="control-group">
     <div class="controls">
-      <%= submit_tag "Save", :class => 'btn btn-primary' %>
+      <%= submit_tag "Enregistrer", :class => 'btn btn-primary' %>
     </div>
   </div>
 </form>

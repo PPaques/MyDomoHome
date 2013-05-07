@@ -1,7 +1,7 @@
-<p>You need to login to access this DomoHouse.</p>
+<p>Vous devez vous identifier pour accéder à MyDomoHome.</p>
 <%= bootstrap_flash %>
 <%= form_tag do %>
-  <%= text_field_tag(:name, nil, :placeholder => 'Username (admin)') %>
-  <%= password_field_tag(:password, nil, :placeholder => 'Password (admin)') %>
-  <%= submit_tag("Login", :class => "btn btn-primary") %>
+  <%= text_field_tag(:name, nil, :placeholder => 'Identifiant (admin)') %>
+  <%= password_field_tag(:password, nil, :placeholder => 'Mot de passe (admin)') %>
+  <%= submit_tag("Authentification", :class => "btn btn-primary") %>
 <% end %>

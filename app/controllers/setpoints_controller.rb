@@ -3,7 +3,7 @@ class SetpointsController < ApplicationController
   # GET /setpoints
   # GET /setpoints.json
   def index
-    @setpoints = Setpoint.all
+    @setpoints = Setpoint.unscoped.order("DATE_FORMAT(times, '%H'), day ASC").all(:include => :room)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -61,7 +61,8 @@ class SetpointsController < ApplicationController
 
     respond_to do |format|
       if @setpoint.update_attributes(params[:setpoint])
-        format.html { redirect_to @setpoint, notice: 'Setpoint was successfully updated.' }
+        # format.html { redirect_to @setpoint, notice: 'Setpoint was successfully updated.' }
+        format.html { redirect_to @setpoint, notice: 'Consigne mise à jour avec succès.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,6 +76,22 @@ class SetpointsController < ApplicationController
   def destroy
     @setpoint = Setpoint.find(params[:id])
     @setpoint.destroy
+
+    respond_to do |format|
+      format.html { redirect_to setpoints_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def update_multiple
+    setpoint_ids = []
+    params[:setpoints_update].each_with_index do |(key,value),index|
+     setpoint_ids.push key
+    end
+    @setpoints = Setpoint.find(setpoint_ids)
+    @setpoints.each do |setpoint|
+      setpoint.update_attributes!(temperature: params[:setpoints_update][setpoint.id.to_s].to_f)
+    end
 
     respond_to do |format|
       format.html { redirect_to setpoints_url }

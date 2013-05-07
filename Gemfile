@@ -11,7 +11,6 @@ gem 'daemons'
 gem 'i2c', '~> 0.2.22'
 gem 'nested_form'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -20,11 +19,15 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   # to precompile assets faster
   gem 'turbo-sprockets-rails3'
+  gem 'haml'
 
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'flot-rails'
+gem 'font-awesome-rails'
 
 # Deploy with Capistrano
 group :development, :test do
