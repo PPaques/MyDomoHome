@@ -26,7 +26,7 @@ class Room < ActiveRecord::Base
     20
     # set = self.setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min}").order("times DESC").first
     # i=1
-    # while (set.nil? or i< 6)  
+    # while (set.nil? or i< 6)
     #   self.setpoints.unscoped.where("day=#{(Time.now-i.days).wday}").order("times ASC").first
     #   i+=1
     # end
@@ -47,7 +47,7 @@ class Room < ActiveRecord::Base
     # On parcours chaque ouverture de la pièce
     self.openings.each do |opening|
       # Si l'ouverture est ouverte
-      if opening.opened? 
+      if opening.opened?
         # On parcours les pièces connectées
         opening.rooms.each do |room|
           # Si la pièce connectée est l'extérieur, on renvoie true
@@ -71,13 +71,13 @@ class Room < ActiveRecord::Base
   def update_heating_state
     @gpio.on if self.heating
     @gpio.off unless self.heating
-  end 
+  end
 
 
   private
 
   def save_temperature_measure
-    if self.temperature.nil? 
+    if self.temperature.nil?
       self.temperature = 0
     end
     if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature).abs > DELTA)
@@ -109,11 +109,11 @@ class Room < ActiveRecord::Base
     numerator = (0...xs.length).reduce(0) do |sum, i|
       sum + ((xs[i] - x_mean) * (ys[i] - y_mean))
     end
-     
+
     denominator = xs.reduce(0) do |sum, x|
       sum + ((x - x_mean) ** 2)
     end
-    
+
     slope = (numerator / denominator)
     min_slope = 0.005
     if slope > min_slope
