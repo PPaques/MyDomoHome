@@ -1,7 +1,7 @@
 <h1>Historique</h1>
 <div class="history-top">
     <div class="btn-group" data-toggle="buttons-radio">
-	    <a href="<%= history_index_path %>?time=0" class="btn btn-small<%= ' active' if @time == 0 %>">Toujours</a>
+	    <a href="<%= history_index_path %>?time=100000" class="btn btn-small<%= ' active' if @time == 100000 %>">Toujours</a>
 	    <a href="<%= history_index_path %>?time=8766" class="btn btn-small<%= ' active' if @time == 8766 %>">1 an</a>
 	    <a href="<%= history_index_path %>?time=4392" class="btn btn-small<%= ' active' if @time == 4392 %>">6 mois</a>
 	    <a href="<%= history_index_path %>?time=720" class="btn btn-small<%= ' active' if @time == 720 %>">1 mois</a>
@@ -12,7 +12,7 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="widget">
-			<div class="widget-header"><i class="icon-bookmark"></i><h3>Évolution globale</h3></div>
+			<div class="widget-header"><i class="icon-signal"></i><h3>Évolution globale</h3></div>
 			<div class="widget-content">
 				<div id="HistoryGlobal" class="flot flot-width-full height-200">
 					<div class="spinner"><i class="icon-spinner icon-spin"></i></div>
@@ -26,7 +26,7 @@
 	<% @rooms.each do |room| %>
 		<div class="span6">
 			<div class="widget">
-				<div class="widget-header"><i class="icon-bookmark"></i><h3><%= room.name %></h3></div>
+				<div class="widget-header"><i class="icon-signal"></i><h3><%= room.name %></h3></div>
 				<div class="widget-content">
 					<div id="History<%= room.id %>" class="flot flot-width-full height-200">
 						<div class="spinner"><i class="icon-spinner icon-spin"></i></div>
@@ -41,6 +41,39 @@
 		<% index = index + 1 %>
 	<% end %>
 </div>
+<div class="row-fluid history">
+			<div class="span4">
+				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique températures</h3></div>
+				<div class="widget-content">
+					<ul class="history-home">
+						<% TemperatureMeasure.all.each do |temperature|	%>
+							<li><span class="label"><%= temperature.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room" style="background-color:<%= temperature.room.color %>;"><%= temperature.room.name %></span> <%= temperature.temperature %> °C</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique ouvertures</h3></div>
+				<div class="widget-content">
+					<ul class="history-home">
+						<% OpeningMeasure.all.each do |opening_history|	%>
+							<li><span class="label"><%= opening_history.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room label-info"><%= opening_history.opening.name %></span> <%= opening_history.opened ? "Ouvert" : "Fermé" %></li>	
+						<% end %>
+					</ul>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique chauffage</h3></div>
+				<div class="widget-content">
+					<ul class="history-home">
+					<% HeatingLog.all.each do |heating_log| %>
+						<% next if heating_log.room.isoutside? %>
+						<li><span class="label"><%= heating_log.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room" style="background-color:<%= heating_log.room.color %>;"><%= heating_log.room.name %></span> <%= heating_log.heating ? "Allumé" : "Éteint" %></li>
+					<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
 
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
@@ -62,7 +95,7 @@ function graphes(){
 			},
 		xaxis: {
 				mode: "time",
-				timeformat: "%H:%M",
+				timeformat: "<%= "%d/%m/%y " if @time>24%>%H:%M",
 				timezone: "browser",
                 color: "#666"
 			},
@@ -82,7 +115,7 @@ function graphes(){
 			},
 		xaxis: {
 				mode: "time",
-				timeformat: "%H:%M",
+				timeformat: "<%= "%d/%m " if @time>24%>%H:%M",
 				timezone: "browser",
                 color: "#666"
 			},

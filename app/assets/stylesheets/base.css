@@ -339,6 +339,7 @@ footer {
 	color: #666;
 	text-align: center;
 	text-shadow: 1px 1px 0 #FFF;
+    clear: both;
 }
 
 footer a:link, footer a:visited {
@@ -678,4 +679,21 @@ li.hello {
 
 .modal a.close {
     color: #000;
+}
+
+div.center {
+    text-align: center;
+}
+
+.form-horizontal .control-label {
+    width: 30%;
+}
+
+.form-horizontal .controls {
+    margin-left: 33%;
+}
+
+.history ul.history-home {
+    max-height: 250px;
+    overflow: auto;
 }

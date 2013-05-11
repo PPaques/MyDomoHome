@@ -3,6 +3,7 @@ MyHome::Application.routes.draw do
   match "login" => "authentification#login"
   match "logout" => "authentification#logout"
   match "getRecentJSON" => "history#getRecentJSON"
+  match "generateFakeDatas" => "simulator#generateFakeDatas"
 
   resources :users
   resources :openings

@@ -3,20 +3,33 @@
 <%= form_tag 'simulator', method: :post, class: "form-horizontal" %>
 <div class="row-fluid">
       <div class="span6">
-        <div class="widget">
-          <div class="widget-header"><i class="icon-bookmark"></i><h3>Temperatures</h3></div>
-          <div class="widget-content">
-            <% @rooms.each do |room| %>
-            <div class="control-group">
-              <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>
-              <div class="controls">
-                <%= number_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="widget-header"><i class="icon-bar-chart"></i><h3>Temperatures</h3></div>
+            <div class="widget-content">
+              <% @rooms.each do |room| %>
+              <div class="control-group">
+                <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>
+                <div class="controls">
+                  <%= number_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
+                </div>
+              </div>
+              <% end %>
+              <div class="control-group">
+                <div class="controls">
+                  <%= button_tag raw("<i class=\"icon-refresh\"></i> Enregistrer"), :class => 'btn btn-primary' %>
+                </div>
               </div>
             </div>
-            <% end %>
-            <div class="control-group">
-              <div class="controls">
-                <%= submit_tag "Enregistrer", :class => 'btn btn-primary' %>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="widget-header"><i class="icon-random"></i><h3>Donnée fictives</h3></div>
+            <div class="widget-content">
+              <p>Cliquez sur ce bouton pour supprimer toutes les données d'historiques enregistrées et générer deux jours de données fictives. (Cette opération peut prendre quelques minutes)</p>
+              <div class="center">
+                <%= link_to raw("<i class=\"icon-random\"></i> Générer"), {:controller => "simulator", :action => "generateFakeDatas"}, :class => "btn btn-primary" %>
               </div>
             </div>
           </div>
@@ -25,7 +38,7 @@
 
       <div class="span6">
         <div class="widget">
-          <div class="widget-header"><i class="icon-bookmark"></i><h3>Ouvertures</h3></div>
+          <div class="widget-header"><i class="icon-tasks "></i><h3>Ouvertures</h3></div>
           <div class="widget-content">
             <% @openings.each do |opening| %>
             <div class="control-group">
@@ -37,7 +50,7 @@
             <% end %>
             <div class="control-group">
               <div class="controls">
-                <%= submit_tag "Enregistrer", :class => 'btn btn-primary' %>
+                <%= button_tag raw("<i class=\"icon-refresh\"></i> Enregistrer"), :class => 'btn btn-primary' %>
               </div>
             </div>
           </div>
