@@ -33,7 +33,9 @@ Opening.create(name: "Porte chambre",   gpio_number: 4 , opened: false, rooms: [
 
 #cleaning user
 User.delete_all
-User.create(name: "admin", password: "admin", email: "admin@admin.com", role: 1)
+User.create(name: "admin", password: "admin", email: "admin@mydomohome.com", role: 1)
+User.create(name: "gestion", password: "gestion", email: "gestion@mydomohome.com", role: 2)
+User.create(name: "invite", password: "invite", email: "invite@mydomohome.com", role: 3)
 
 # cleaning log
 TemperatureMeasure.delete_all

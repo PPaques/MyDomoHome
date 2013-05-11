@@ -29,8 +29,10 @@
 								</div>
 							  <% index += 1 %>
 							<% end  %>
+							<% if session[:user_role] < 3 %>
 							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right', :disabled => true if @home.mode_auto%>
 							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
+							<% end %>
 						<% end %>
 						</div>
 					</div>

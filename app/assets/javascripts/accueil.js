@@ -9,6 +9,10 @@ $(document).ready(function() {
 	                hoverable: true,
 	                borderWidth: 1
 	            },
+	        tooltip: true,
+	        tooltipOpts: {
+	        	content: "<strong>%s :</strong> %x - %y°C"
+	        },
 			legend: {
 					position: "sw",
 	                backgroundColor: "#aaaaaa",

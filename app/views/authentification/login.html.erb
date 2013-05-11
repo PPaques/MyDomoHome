@@ -1,7 +1,7 @@
 <p>Vous devez vous identifier pour accéder à MyDomoHome.</p>
 <%= bootstrap_flash %>
 <%= form_tag do %>
-  <%= text_field_tag(:name, nil, :placeholder => 'Identifiant (admin)') %>
-  <%= password_field_tag(:password, nil, :placeholder => 'Mot de passe (admin)') %>
+  <%= text_field_tag(:name, nil, :placeholder => 'Identifiant') %>
+  <%= password_field_tag(:password, nil, :placeholder => 'Mot de passe') %>
   <%= submit_tag("Authentification", :class => "btn btn-primary") %>
 <% end %>

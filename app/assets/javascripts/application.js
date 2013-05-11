@@ -18,6 +18,7 @@
 //= require twitter/bootstrap
 //= require jquery.flot
 //= require jquery.flot.resize
+//= require jquery.flot.tooltip.min
 //= require flot.time
 //= require jquery_nested_form
 //= require_tree .

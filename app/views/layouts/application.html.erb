@@ -30,7 +30,9 @@
         <div class="nav-collapse">
           <ul class="nav pull-right">
             <li class="hello"><span>Bonjour <%= session[:user]%></span></li>
-            <li><%= link_to raw("<i class=\"icon-user\"></i> Profil"), :controller => 'users', :action => 'edit', :id => session[:user_id] %></li>
+            <% if session[:user_role] == 1 %>
+              <li><%= link_to raw("<i class=\"icon-user\"></i> Profil"), :controller => 'users', :action => 'edit', :id => session[:user_id] %></li>
+            <% end %>
             <li><%= link_to raw("<i class=\"icon-off\"></i> Déconnexion"), :controller => 'authentification', :action => 'logout' %></li>
           </ul>
         </div>
@@ -45,11 +47,14 @@
           <%= tab_link_to raw("<i class=\"icon-home\"></i><span>Home</span>"), root_path, params[:controller] == 'accueil'  %>
 
           <%= tab_link_to raw("<i class=\"icon-bar-chart\"></i><span>Historique</span>"), history_index_path, params[:controller] == 'history'  %>
-
-          <%= tab_link_to raw("<i class=\"icon-tasks\"></i><span>Consignes</span>"), setpoints_path, params[:controller] == 'setpoints'  %>
-          <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), parameters_path, params[:controller] == 'parameters'  %>
-          <%= tab_link_to raw("<i class=\"icon-group\"></i><span>Utilisateurs</span>"), users_path, params[:controller] == 'users'  %>
-          <%= tab_link_to raw("<i class=\"icon-fire\"></i><span>Simulator</span>"), simulator_index_path, params[:controller] == 'simulator' if Rails.env.development?  %>
+          <% if session[:user_role] < 3 %>
+            <%= tab_link_to raw("<i class=\"icon-tasks\"></i><span>Consignes</span>"), setpoints_path, params[:controller] == 'setpoints'  %>
+            <%= tab_link_to raw("<i class=\"icon-cogs\"></i><span>Configuration</span>"), parameters_path, params[:controller] == 'parameters'  %>
+          <% end %>
+          <% if session[:user_role] == 1 %>
+            <%= tab_link_to raw("<i class=\"icon-group\"></i><span>Utilisateurs</span>"), users_path, params[:controller] == 'users'  %>
+            <%= tab_link_to raw("<i class=\"icon-fire\"></i><span>Simulator</span>"), simulator_index_path, params[:controller] == 'simulator' if Rails.env.development?  %>
+          <% end %>
 
             <!-- Display current time, update each second -->
           <li class="time-display-right"><a title="Heure actuelle"><i class="icon-time"></i><span id="time">00:00:00</span></a></li>
@@ -59,27 +64,6 @@
   </nav> <!-- /subnavbar -->
 </header>
 <div id="sub-background">&nbsp;</div>
-<!-- <aside>
-  <div class="toggle-submenu">
-    <a class="btn btn-collapse btn-inverse">
-      <span class="icon-reorder"></span>
-    </a>
-  </div>
-  <ul class="nav submenu-collapse">
-    <li class="active">
-      <a href="#"><i class="icon icon-home"></i><span> Vue d'ensemble</span></span></a>
-    </li>
-    <li>
-      <a href="#"><i class="icon icon-th-list"></i><span> Configuration</span></a>
-    </li>
-    <li>
-      <a href="#"><i class="icon icon-file"></i><span> Événements récents <span class="label">4</span></span></a>
-    </li>
-    <li>
-      <a href="#"><i class="icon icon-signal"></i><span> Connectivité</span></a>
-    </li>
-  </ul>
-</aside> -->
 <section>
   <div class="container-fluid">
     <%= bootstrap_flash %>
