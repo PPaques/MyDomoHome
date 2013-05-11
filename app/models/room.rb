@@ -15,28 +15,19 @@ class Room < ActiveRecord::Base
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
 
-  def after_initialize
-    @my_cache = {}
-    if Rails.env.production?
-      @gpio = Gpio.new(:pin => :gpio_heat_number, :direction => :out)
-    end
-  end
-
   def consigne
- 
-     set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
-     i=1
-     while (set.nil? and i< 7)  
-         set=setpoints.unscoped.where("day=#{(Time.now.midnight-i.day).wday} AND room_id=#{self.id}").order("times ASC").first
+    set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
+    i=1
+    while (set.nil? and i< 7)
+      set=setpoints.unscoped.where("day=#{(Time.now.midnight-i.day).wday} AND room_id=#{self.id}").order("times ASC").first
       i+=1
-      end
+    end
 
-
-      if set.nil?
-       20
-      else
-        set.temperature
-      end
+    if set.nil?
+      20
+    else
+      set.temperature
+    end
   end
 
   def self.isoutside?
@@ -47,7 +38,7 @@ class Room < ActiveRecord::Base
     # On parcours chaque ouverture de la pièce
     self.openings.each do |opening|
       # Si l'ouverture est ouverte
-      if opening.opened? 
+      if opening.opened?
         # On parcours les pièces connectées
         opening.rooms.each do |room|
           # Si la pièce connectée est l'extérieur, on renvoie true
@@ -69,15 +60,18 @@ class Room < ActiveRecord::Base
   end
 
   def update_heating_state
-    @gpio.on if self.heating
-    @gpio.off unless self.heating
-  end 
+    if Rails.env.production?
+      gpio = Gpio.new(:pin => :gpio_heat_number, :direction => :out)
+      gpio.on  if self.heating
+      gpio.off unless self.heating
+    end
+  end
 
 
   private
 
   def save_temperature_measure
-    if self.temperature.nil? 
+    if self.temperature.nil?
       self.temperature = 0
     end
     if temperature_measures.last.nil? or ( temperature_changed? and (self.temperature - temperature_measures.last.temperature).abs > DELTA)
@@ -109,11 +103,11 @@ class Room < ActiveRecord::Base
     numerator = (0...xs.length).reduce(0) do |sum, i|
       sum + ((xs[i] - x_mean) * (ys[i] - y_mean))
     end
-     
+
     denominator = xs.reduce(0) do |sum, x|
       sum + ((x - x_mean) ** 2)
     end
-    
+
     slope = (numerator / denominator)
     min_slope = 0.005
     if slope > min_slope
