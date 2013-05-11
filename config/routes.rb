@@ -3,27 +3,20 @@ MyHome::Application.routes.draw do
   match "login" => "authentification#login"
   match "logout" => "authentification#logout"
   match "getRecentJSON" => "history#getRecentJSON"
+  match "generateFakeDatas" => "simulator#generateFakeDatas"
 
   resources :users
-
-
   resources :openings
-
-
   resources :rooms
-
-
   resources :homes
-
-
   resources :accueil
-
   resources :simulator
-
-  resources :setpoints
-
+  resources :setpoints do
+    collection do
+      put :update_multiple
+    end
+  end
   resources :parameters
-
   resources :history
 
 

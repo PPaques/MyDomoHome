@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Room < ActiveRecord::Base
-  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope
+  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope, :color
 
   belongs_to :home, inverse_of: :rooms
   has_many :setpoints, inverse_of: :room
@@ -15,28 +15,19 @@ class Room < ActiveRecord::Base
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
 
-  def after_initialize
-    @my_cache = {}
-    if Rails.env.production?
-      @gpio = Gpio.new(:pin => :gpio_heat_number, :direction => :out)
-    end
-  end
-
   def consigne
-    20
-    # set = self.setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min}").order("times DESC").first
-    # i=1
-    # while (set.nil? or i< 6)
-    #   self.setpoints.unscoped.where("day=#{(Time.now-i.days).wday}").order("times ASC").first
-    #   i+=1
-    # end
+    set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
+    i=1
+    while (set.nil? and i< 7)
+      set=setpoints.unscoped.where("day=#{(Time.now.midnight-i.day).wday} AND room_id=#{self.id}").order("times ASC").first
+      i+=1
+    end
 
-
-    # if set.nil?
-    #   20
-    # else
-    #   set.temperature
-    # end
+    if set.nil?
+      20
+    else
+      set.temperature
+    end
   end
 
   def self.isoutside?
@@ -69,8 +60,12 @@ class Room < ActiveRecord::Base
   end
 
   def update_heating_state
-    @gpio.on if self.heating
-    @gpio.off unless self.heating
+    if Rails.env.production?
+      gpio = Gpio.new(:pin => self.gpio_heat_number, :direction => :out)
+      gpio.on  if self.heating
+      gpio.off unless self.heating
+    end
+    return true
   end
 
 

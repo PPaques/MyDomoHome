@@ -14,10 +14,10 @@
 //= require timeDisplay
 //= require jquery
 //= require jquery_ujs
-//= !require twitter/bootstrap
-//= require bootstrap.min
-//= require flot
+//= require jquery.ui.selectable
+//= require twitter/bootstrap
+//= require jquery.flot
+//= require jquery.flot.resize
 //= require flot.time
-//= require flot.resize
 //= require jquery_nested_form
-//= require base
+//= require_tree .

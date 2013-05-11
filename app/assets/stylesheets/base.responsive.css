@@ -62,6 +62,25 @@
  	aside {
  		top:269px;
  	}
+
+ 	div.history-top {
+ 		display: block;
+ 		position: relative;
+ 		top:auto;
+ 		right: auto;
+ 		width: 100%;
+ 	}
+
+ 	div.history-top div.btn-group {
+ 		width: 100%;
+ 	}
+ 	div.history-top div.btn-group a.btn {
+ 		display: block;
+ 		margin: 5px auto;
+ 		width: 100%;
+ 		border-radius: 5px;
+ 		padding: 5px 0;
+ 	}
 }
 
 @media (max-width:480px){

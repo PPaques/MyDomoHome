@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418095227) do
+ActiveRecord::Schema.define(:version => 20130506110956) do
 
   create_table "heating_logs", :force => true do |t|
     t.integer  "room_id"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20130418095227) do
     t.boolean  "isoutside"
     t.integer  "gpio_heat_number"
     t.string   "temperature_slope"
+    t.string   "color"
   end
 
   create_table "setpoints", :force => true do |t|

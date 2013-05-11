@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title><%= content_for?(:title) ? yield(:title) : "MyDomoHome" %></title>
@@ -13,8 +13,7 @@
     <![endif]-->
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,2000,3000">
-    <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
-    <%= stylesheet_link_tag "font-awesome.min", :media => "all" %>
+    <%= stylesheet_link_tag :application %>
     <%= stylesheet_link_tag "base", :media => "all" %>
     <%= stylesheet_link_tag "base.responsive", :media => "all" %>
     <%= stylesheet_link_tag "authentification", :media => "all" %>
@@ -27,7 +26,7 @@
       <%= yield %>
       <footer><a href="http://www.ecam.be/">ECAM</a> - Année académique 2012-2013</footer>
     </div>
-    <%= javascript_include_tag "jquery-1.9.1.min" %>  
+    <%= javascript_include_tag "jquery-1.9.1.min" %>
     <%= javascript_include_tag "bootstrap.min" %>
   </body>
 </html>
