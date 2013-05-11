@@ -61,10 +61,11 @@ class Room < ActiveRecord::Base
 
   def update_heating_state
     if Rails.env.production?
-      gpio = Gpio.new(:pin => :gpio_heat_number, :direction => :out)
+      gpio = Gpio.new(:pin => self.gpio_heat_number, :direction => :out)
       gpio.on  if self.heating
       gpio.off unless self.heating
     end
+    return true
   end
 
 
