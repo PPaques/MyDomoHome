@@ -31,7 +31,7 @@ $ ->
       success: (data, textStatus, jqXHR) ->
         window.location.reload()
       error: (data, textStatus, jqXHR)->
-        alert("TempÃ©rature incorrecte")
+        alert("Température incorrecte")
 
   $('#mass_assign').on 'hide', () ->
     $('.ui-selected').removeClass('ui-selected')
