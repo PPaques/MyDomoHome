@@ -15,7 +15,7 @@
 										
 										<%= '<i class="icon-caret-up"></i>'.html_safe if @home.rooms[index].temperature_slope == "asc" %>
 										<%= '<i class="icon-caret-down"></i>'.html_safe if @home.rooms[index].temperature_slope == "desc" %>
-										<%= '='.html_safe if @home.rooms[index].temperature_slope == "equ" %>
+										<%= '-'.html_safe if @home.rooms[index].temperature_slope == "equ" %>
 
 									</span>
 									<% if !@home.rooms[index].isoutside? %>

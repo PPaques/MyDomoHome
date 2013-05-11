@@ -110,7 +110,7 @@ class Room < ActiveRecord::Base
     end
 
     slope = (numerator / denominator)
-    min_slope = 0.005
+    min_slope = 0.00005
     if slope > min_slope
       self.temperature_slope = "asc"
     elsif slope <- min_slope
@@ -118,6 +118,7 @@ class Room < ActiveRecord::Base
     else
       self.temperature_slope = "equ"
     end
+    # self.temperature_slope = numerator.round(1).to_s + "/" + denominator.round(1).to_s + "=" + slope.to_s
   end
 
   def save_heating_log
