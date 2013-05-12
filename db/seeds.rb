@@ -11,13 +11,13 @@
 
 # cleaning model and regerate it
 Home.delete_all
-Home.create(mode_auto: true)
+Home.create(mode_auto: true, light_threeshold: 50)
 
 Room.delete_all
-Room.create(name: "Extérieur",  gpio_heat_number: 14, heating: false, light: false, gpio_light_number: 14, temperature: 20, home: Home.first, isoutside: true, temperature_slope: "equ", color:"#006CFF")
-Room.create(name: "Salon",      gpio_heat_number: 15, heating: false, light: false, gpio_light_number: 0,  temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#EE3C19")
-Room.create(name: "Cuisine",    gpio_heat_number: 18, heating: false, light: false, gpio_light_number: 0,  temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#AED100")
-Room.create(name: "Chambre",    gpio_heat_number: 23, heating: false, light: false, gpio_light_number: 0,  temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#FF9900")
+Room.create(name: "Extérieur", temperature_channel: 5, gpio_heat_number: 14, heating: false, light: false, temperature: 20, home: Home.first, isoutside: true,  temperature_slope: "equ", color:"#006CFF", light_channel: 7, gpio_light_number: 14)
+Room.create(name: "Salon",     temperature_channel: 4, gpio_heat_number: 15, heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#EE3C19")
+Room.create(name: "Cuisine",   temperature_channel: 3, gpio_heat_number: 18, heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#AED100")
+Room.create(name: "Chambre",   temperature_channel: 6, gpio_heat_number: 23, heating: false, light: false, temperature: 20, home: Home.first, isoutside: false, temperature_slope: "equ", color:"#FF9900")
 
 Opening.delete_all
 Opening.create(name: "Porte entrée",    gpio_number: 22, opened: false, rooms: [Room.find_by_name("Extérieur"), Room.find_by_name("Salon")], home: Home.first)
