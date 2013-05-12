@@ -10,9 +10,9 @@ class HistoryController < ApplicationController
       time = 24
     end
     if params[:room].to_i >= 1
-      @rooms = Room.where(:id => params[:room].to_i)
+      @rooms = Room.where(:id => params[:room].to_i).includes(:temperature_measures)
     else
-      @rooms = Room.all
+      @rooms = Room.includes(:temperature_measures).all
     end
   	result = []
   	# render json: 24.hours.ago
@@ -35,6 +35,6 @@ class HistoryController < ApplicationController
     if params[:time].to_i > 0
       @time = params[:time].to_i
     end
-    @rooms = Room.all
+    @rooms = Room.includes(:temperature_measures).all
   end
 end

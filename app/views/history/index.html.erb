@@ -46,7 +46,7 @@
 				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique températures</h3></div>
 				<div class="widget-content">
 					<ul class="history-home">
-						<% TemperatureMeasure.all.each do |temperature|	%>
+						<% TemperatureMeasure.includes(:room).all.each do |temperature|	%>
 							<li><span class="label"><%= temperature.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room" style="background-color:<%= temperature.room.color %>;"><%= temperature.room.name %></span> <%= temperature.temperature %> °C</li>
 						<% end %>
 					</ul>
@@ -56,8 +56,8 @@
 				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique ouvertures</h3></div>
 				<div class="widget-content">
 					<ul class="history-home">
-						<% OpeningMeasure.all.each do |opening_history|	%>
-							<li><span class="label"><%= opening_history.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room label-info"><%= opening_history.opening.name %></span> <%= opening_history.opened ? "Ouvert" : "Fermé" %></li>	
+						<% OpeningMeasure.includes(:room).all.each do |opening_history|	%>
+							<li><span class="label"><%= opening_history.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room label-info"><%= opening_history.opening.name %></span> <%= opening_history.opened ? "Ouvert" : "Fermé" %></li>
 						<% end %>
 					</ul>
 				</div>
@@ -66,7 +66,7 @@
 				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique chauffage</h3></div>
 				<div class="widget-content">
 					<ul class="history-home">
-					<% HeatingLog.all.each do |heating_log| %>
+					<% HeatingLog.includes(:room).all.each do |heating_log| %>
 						<% next if heating_log.room.isoutside? %>
 						<li><span class="label"><%= heating_log.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room" style="background-color:<%= heating_log.room.color %>;"><%= heating_log.room.name %></span> <%= heating_log.heating ? "Allumé" : "Éteint" %></li>
 					<% end %>
