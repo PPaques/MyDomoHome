@@ -56,7 +56,7 @@
 				<div class="widget-header"><i class="icon-bar-chart"></i><h3>Historique ouvertures</h3></div>
 				<div class="widget-content">
 					<ul class="history-home">
-						<% OpeningMeasure.includes(:room).all.each do |opening_history|	%>
+						<% OpeningMeasure.includes(:opening).all.each do |opening_history|	%>
 							<li><span class="label"><%= opening_history.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room label-info"><%= opening_history.opening.name %></span> <%= opening_history.opened ? "Ouvert" : "Fermé" %></li>
 						<% end %>
 					</ul>
