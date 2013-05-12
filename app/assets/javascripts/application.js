@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.selectable
+//= require jquery.ui.slider
 //= require twitter/bootstrap
 //= require jquery.flot
 //= require jquery.flot.resize

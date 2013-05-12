@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Home < ActiveRecord::Base
-  attr_accessible :mode_auto, :rooms_attributes
+  attr_accessible :mode_auto, :rooms_attributes, :light_threeshold
 
   has_many :rooms, inverse_of: :home
   has_many :openings

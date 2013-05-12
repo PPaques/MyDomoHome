@@ -100,7 +100,7 @@ class Room < ActiveRecord::Base
 
   def read_temperature
     if Rails.env.production? and !self.temperature_channel.blank?
-      self.temperature = Adc.new(:channel => self.temperature_channel) * CONVERSION_FACTOR
+      self.temperature = (Adc.new(:channel => self.temperature_channel) * CONVERSION_FACTOR).to_i
       self.save
     end
   end

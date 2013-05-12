@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <%= form_for @home do |f| %>  
+  <%= form_for @home do |f| %>
     <div class="span12">
       <div class="widget">
         <div class="widget-header"><i class="icon-bookmark"></i><h3>Maison</h3></div>
@@ -7,11 +7,19 @@
           <h4>Mode automatique</h4>
             <div class="interrupteur">
               <%= f.check_box :mode_auto %>
-              <%= f.label :mode_auto, raw('&nbsp;') %> 
+              <%= f.label :mode_auto, raw('&nbsp;') %>
             </div>
+          <h4>Seuil de luminosité</h4>
+            <%= f.hidden_field :light_threeshold, :id => 'light_threeshold_hidden' %>
+            <strong class="light_threeshold_percentage" style="text-align:center">
+              <%= number_to_percentage(@home.light_threeshold, :precision => 0) %>
+            </strong>
+            <div class="slider" style="width:220px">  </div>
+
+          <br />
           <%= f.submit "Mettre à jour", :class => 'btn btn-primary' %>
          </div>
       </div>
     </div>
-  <% end %>      
+  <% end %>
 </div>
