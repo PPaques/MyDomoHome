@@ -8,15 +8,8 @@ class Opening < ActiveRecord::Base
 
   after_save :save_opening_measure
 
-  def after_initialize
-    @my_cache = {}
-    if Rails.env.production?
-      @gpio = Gpio.new(:pin => :gpio_number, :direction => :in)
-    end
-  end
-
   def self.update_status
-    opened = @gpio.read
+    opened = Gpio.new(:pin => self.gpio_number, :direction => :in).read
     self.save
   end
 

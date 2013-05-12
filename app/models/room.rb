@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Room < ActiveRecord::Base
-  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope, :color, :gpio_light_number
+  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope, :color, :gpio_light_number, :temperature_channel, :light_channel, :light_measure
 
   belongs_to :home, inverse_of: :rooms
   has_many :setpoints, inverse_of: :room
@@ -9,11 +9,16 @@ class Room < ActiveRecord::Base
   has_many :heating_logs, inverse_of: :room
 
   before_save :update_slope
+  before_save :update_light
   after_save :save_temperature_measure
   after_save :save_heating_log
 
   # delta is a configuration value to say what's the delta value to save in history
   DELTA = 0.5
+  # Constant for pour ADC
+  # Factor => 250/4095 = 0.061050061
+  CONVERSION_FACTOR = 0.061050061
+  LIGHT_FACTOR      = 0.024414063
 
   def consigne
     set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
@@ -59,13 +64,45 @@ class Room < ActiveRecord::Base
     return false
   end
 
-  def update_heating_state
+  def set_all_states
+    self.set_heating_state
+    self.set_light_state
+  end
+
+  def set_heating_state
     if Rails.env.production?
       gpio = Gpio.new(:pin => self.gpio_heat_number, :direction => :out)
       gpio.on  if self.heating
       gpio.off unless self.heating
     end
     return true
+  end
+
+  def set_light_state
+    if Rails.env.production? and !self.light_channel.blank?
+      gpio = Gpio.new(:pin => self.gpio_light_number, :direction => :out)
+      gpio.on  if self.light
+      gpio.off unless self.light
+    end
+  end
+
+  def read_all_states
+    self.read_light
+    self.read_temperature
+  end
+
+  def read_light
+    if Rails.env.production? and !self.temperature_channel.blank?
+      self.light_measure = Adc.new(:channel => self.temperature_channel) * LIGHT_FACTOR
+      self.save
+    end
+  end
+
+  def read_temperature
+    if Rails.env.production? and !self.temperature_channel.blank?
+      self.temperature = Adc.new(:channel => self.temperature_channel) * CONVERSION_FACTOR
+      self.save
+    end
   end
 
 
@@ -127,5 +164,12 @@ class Room < ActiveRecord::Base
     end
   end
 
+  def update_light
+    if light_measure_changed?
+      #if home.
+
+      #end
+    end
+  end
 
 end

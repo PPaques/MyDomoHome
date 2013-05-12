@@ -10,7 +10,6 @@ handler do |job|
   puts "Running #{job}"
 end
 
-every(1.seconds, 'regulation_update') { Home.first.update_regulation}
-every(1.seconds, 'openings_state_update') { Home.first.update_opening_state}
-every(10.seconds, 'temperature_state_update') {Home.first.update_temperature}
-every(5.seconds, 'update_heatings_state') {Home.first.update_heatings_state}
+every(2.seconds,  'regulation_update')  {Home.first.update_regulation}
+every(2.seconds,  'read_all_states')    {Home.first.read_states}
+every(5.seconds,  'set_states')         {Home.first.set_states}
