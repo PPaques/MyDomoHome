@@ -6,8 +6,6 @@ class Home < ActiveRecord::Base
   has_many :openings
   has_many :setpoints, through: :room
 
-  before_update :merge_setpoints
-
   accepts_nested_attributes_for :rooms
 
 
