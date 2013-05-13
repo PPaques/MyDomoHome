@@ -15,7 +15,7 @@ class Home < ActiveRecord::Base
   def read_states
     if Rails.env.production?
       self.openings.each do |opening|
-        opening.update_status
+        opening.read_status
       end
       self.rooms.each do |room|
         room.read_all
