@@ -21,7 +21,7 @@ group :assets do
   # to precompile assets faster
   gem 'turbo-sprockets-rails3'
   gem 'haml-rails'
-
+  gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -29,7 +29,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'flot-rails'
 gem 'font-awesome-rails'
-gem 'execjs'
 
 # Deploy with Capistrano
 group :development, :test do
