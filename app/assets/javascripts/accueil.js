@@ -28,15 +28,18 @@ $(document).ready(function() {
 	                color: "#888"
 	        }
 		};
-		$.ajax({
-			url: "/getRecentJSON",
-			method: 'GET',
-			dataType: 'json',
-			success: function(json){
-				data = json;
-				$("#recentTemps").plot(data, options);
-			}
-		});
+		if ($("#recentTemps").length > 0) {
+			$.ajax({
+				url: "/getRecentJSON",
+				method: 'GET',
+				dataType: 'json',
+				success: function(json){
+					data = json;
+					$("#recentTemps").plot(data, options);
+				}
+			});
+		}
+
 	// }
 	$('.checkbox-room').click(function(){
 		var id = $(this).attr('id');
