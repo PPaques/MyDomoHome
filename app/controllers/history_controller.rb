@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class HistoryController < ApplicationController
+  caches_action :index, :getRecentJSON
+
 
   def getRecentJSON
 
