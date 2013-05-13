@@ -76,18 +76,12 @@ class SimulatorController < ApplicationController
           if Time.now < newTime
             room.update_attributes(temperature: temp)
           end
-          temperature_mesure << TemperatureMeasure.new(
-                :room_id => room.id,
-                :temperature => temp,
-                :created_at => (startMidnight + (n_minutes*10).minutes).to_datetime,
-                :updated_at => (startMidnight + (n_minutes*10).minutes).to_datetime
-                )
+          temperature_mesure << [room.id, temp, (startMidnight + (n_minutes*10).minutes).to_datetime, (startMidnight + (n_minutes*10).minutes).to_datetime]
         end
         n_minutes = (n_minutes + 1)
       end while Time.now > newTime
     # render text: "Time elapsed #{Time.now - beginning} seconds"
-    # on enregistre le brol
-    TemperatureMeasure.import temperature_mesure
+    TemperatureMeasure.import [:room_id, :temperature, :created_at, :updated_at], temperature_mesure,:validate => false, :timestamps => false
     redirect_to simulator_index_path, :notice => "Nouvelles données générées en #{(Time.now - beginning).round(1)} secondes !"
   end
 end
