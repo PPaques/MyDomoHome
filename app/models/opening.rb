@@ -8,7 +8,7 @@ class Opening < ActiveRecord::Base
 
   after_save :save_opening_measure
 
-  def self.update_status
+  def update_status
     opened = Gpio.new(:pin => self.gpio_number, :direction => :in).read
     self.save
   end
