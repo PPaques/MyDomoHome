@@ -174,7 +174,7 @@ class Room < ActiveRecord::Base
 
   def update_light
     if light_measure_changed? and home.mode_auto?
-      if light_measure > home.light_threeshold
+      if light_measure > home.light_threeshold.to_i
         self.light = false
       else
         self.light = true
