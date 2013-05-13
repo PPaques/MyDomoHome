@@ -18,7 +18,7 @@ class Home < ActiveRecord::Base
         opening.read_status
       end
       self.rooms.each do |room|
-        room.read_all
+        room.read_all_states
       end
     end
   end
