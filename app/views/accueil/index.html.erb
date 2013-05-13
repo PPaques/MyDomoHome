@@ -25,12 +25,19 @@
 									    	<%= room.label :heating, raw('&nbsp;'), :class => 'disabled' if @home.mode_auto %>
 									    	<%= room.label :heating, raw('&nbsp;') unless @home.mode_auto %>
 											</div>
+									<% else %>
+										<div class="interrupteur exterieur">
+											<%= room.check_box :light, :class => 'check_box', :disabled => true if @home.mode_auto%>
+											<%= room.check_box :light, :class => 'check_box' unless @home.mode_auto%>
+									    	<%= room.label :light, raw('&nbsp;'), :class => 'disabled' if @home.mode_auto %>
+									    	<%= room.label :light, raw('&nbsp;') unless @home.mode_auto %>
+										</div>
 									<% end %>
 								</div>
 							  <% index += 1 %>
 							<% end  %>
 							<% if session[:user_role] < 3 and !@home.mode_auto? %>
-								<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
+								<%= f.button raw("<i class=\"icon-refresh\"></i> Mettre à jour"), :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
 							<% end %>
 						<% end %>
 						</div>
