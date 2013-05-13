@@ -11,7 +11,7 @@
               <div class="control-group">
                 <label class="control-label" for="temperature_<%= room.id%>"><%= room.name %></label>
                 <div class="controls">
-                  <%= number_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
+                  <%= text_field_tag "temperature_#{room.id}", room.temperature, :in => -40...50 %><br>
                 </div>
               </div>
               <% end %>
