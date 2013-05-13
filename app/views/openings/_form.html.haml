@@ -1,0 +1,20 @@
+= form_for @opening, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :opened, :class => 'control-label'
+    .controls
+      = f.check_box :opened, :class => 'check_box'
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_area :name, :class => 'text_area'
+  .control-group
+    = f.label :home_id, :class => 'control-label'
+    .controls
+      = f.number_field :home_id, :class => 'number_field'
+  .control-group
+    = f.label :gpio_number, :class => 'control-label'
+    .controls
+      = f.number_field :gpio_number, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), openings_path, :class => 'btn'

@@ -1,0 +1,45 @@
+- model_class = Room
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:heating)
+      %th= model_class.human_attribute_name(:light)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:home_id)
+      %th= model_class.human_attribute_name(:temperature)
+      %th= model_class.human_attribute_name(:isoutside)
+      %th= model_class.human_attribute_name(:gpio_heat_number)
+      %th= model_class.human_attribute_name(:temperature_slope)
+      %th= model_class.human_attribute_name(:color)
+      %th= model_class.human_attribute_name(:gpio_light_number)
+      %th= model_class.human_attribute_name(:temperature_channel)
+      %th= model_class.human_attribute_name(:light_channel)
+      %th= model_class.human_attribute_name(:light_measure)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= link_to room.id, room_path(room)
+        %td= room.heating
+        %td= room.light
+        %td= room.name
+        %td= room.home_id
+        %td= room.temperature
+        %td= room.isoutside
+        %td= room.gpio_heat_number
+        %td= room.temperature_slope
+        %td= room.color
+        %td= room.gpio_light_number
+        %td= room.temperature_channel
+        %td= room.light_channel
+        %td= room.light_measure
+        %td=l room.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_room_path(room), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), room_path(room), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_room_path, :class => 'btn btn-primary'

@@ -20,7 +20,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   # to precompile assets faster
   gem 'turbo-sprockets-rails3'
-  gem 'haml'
+  gem 'haml-rails'
 
   gem 'uglifier', '>= 1.0.3'
 end

@@ -1,0 +1,12 @@
+= form_for @home, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :mode_auto, :class => 'control-label'
+    .controls
+      = f.check_box :mode_auto, :class => 'check_box'
+  .control-group
+    = f.label :light_threeshold, :class => 'control-label'
+    .controls
+      = f.text_field :light_threeshold, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), homes_path, :class => 'btn'
