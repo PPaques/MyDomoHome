@@ -10,6 +10,7 @@ gem 'tzinfo',     '~> 0.3.35'
 gem 'daemons'
 gem 'i2c', '~> 0.2.22'
 gem 'nested_form'
+gem "activerecord-import", "~> 0.3.1"
 
 # Gems used only for assets and not required
 # in production environments by default.
