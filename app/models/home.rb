@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Home < ActiveRecord::Base
-  attr_accessible :mode_auto, :rooms_attributes, :light_threeshold
+  attr_accessible :mode_auto, :rooms_attributes, :light_threeshold, :home_id
 
   has_many :rooms, inverse_of: :home
   has_many :openings
@@ -43,6 +43,13 @@ class Home < ActiveRecord::Base
 
       # On parcours chaque pièce
       self.rooms.each do |room|
+        # on vérifie pour la lampe
+        if (room.has_light? and room.light_measure < self.light_threeshold)
+          room.update_attributes(light: false)
+        else
+          room.update_attributes(light: true)
+        end
+
         # Si la pièce est l'extérieur, on passe à la suivante !
         if room.isoutside?
           next

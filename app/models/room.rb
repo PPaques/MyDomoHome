@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Room < ActiveRecord::Base
-  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope, :color, :gpio_light_number, :temperature_channel, :light_channel, :light_measure
+  attr_accessible :heating, :light, :name, :home, :temperature, :isoutside, :gpio_heat_number, :temperature_slope, :color, :gpio_light_number, :temperature_channel, :light_channel, :light_measure, :home_id
 
   belongs_to :home, inverse_of: :rooms
   has_many :setpoints, inverse_of: :room
@@ -9,7 +9,6 @@ class Room < ActiveRecord::Base
   has_many :heating_logs, inverse_of: :room
 
   before_save :update_slope
-  before_save :update_light
   after_save :save_temperature_measure
   after_save :save_heating_log
 
@@ -22,9 +21,9 @@ class Room < ActiveRecord::Base
 
   def has_light?
     if self.light_channel.blank?
-      return true
-    else
       return false
+    else
+      return true
     end
   end
 
@@ -171,15 +170,4 @@ class Room < ActiveRecord::Base
       heating_logs.create(heating: self.heating)
     end
   end
-
-  def update_light
-    if light_measure_changed? and home.mode_auto?
-      if light_measure > home.light_threeshold.to_i
-        self.light = false
-      else
-        self.light = true
-      end
-    end
-  end
-
 end

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Opening < ActiveRecord::Base
-  attr_accessible :opened, :type, :name, :rooms, :home, :gpio_number
+  attr_accessible :opened, :type, :name, :rooms, :home, :gpio_number, :home_id
 
   has_and_belongs_to_many :rooms
   has_many :opening_measures, inverse_of: :opening

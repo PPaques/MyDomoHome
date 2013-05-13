@@ -66,6 +66,7 @@ class RoomsController < ApplicationController
         format.html { redirect_to @room, notice: 'Pièce mise à jour avec succès.' }
         format.json { head :no_content }
       else
+        Rails.logger.info(@room.errors.inspect)
         format.html { render action: "edit" }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end

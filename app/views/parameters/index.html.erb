@@ -46,7 +46,7 @@
           <div class="widget-content">
             <% index = 0 %>
             <%= f.fields_for :rooms do |room| %>
-              <% unless @home.rooms[index].has_light? %>
+              <% if @home.rooms[index].has_light? %>
                 <div class="piece">
                   <h4><%= @home.rooms[index].name %></h4>
                   <div class="interrupteur exterieur">
