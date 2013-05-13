@@ -48,7 +48,7 @@ MyHome::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-   config.assets.precompile += ['base.js','bootstrap.js', 'bootstrap.min.js', 'excanvas.min.js', 'flot.js', 'flot.resize.js', 'flot.time.js', 'jquery-1.9.1.min.js', 'application.css', 'authentification.css', 'base.css', 'base.responsive.css', 'bootstrap.min.css', 'font-awesome-ie7.min.css']
+
 
 
   # Disable delivery errors, bad email addresses will be ignored
