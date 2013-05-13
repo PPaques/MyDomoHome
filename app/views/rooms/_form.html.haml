@@ -1,0 +1,56 @@
+= form_for @room, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :heating, :class => 'control-label'
+    .controls
+      = f.check_box :heating, :class => 'check_box'
+  .control-group
+    = f.label :light, :class => 'control-label'
+    .controls
+      = f.check_box :light, :class => 'check_box'
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_area :name, :class => 'text_area'
+  .control-group
+    = f.label :home_id, :class => 'control-label'
+    .controls
+      = f.number_field :home_id, :class => 'number_field'
+  .control-group
+    = f.label :temperature, :class => 'control-label'
+    .controls
+      = f.text_field :temperature, :class => 'text_field'
+  .control-group
+    = f.label :isoutside, :class => 'control-label'
+    .controls
+      = f.check_box :isoutside, :class => 'check_box'
+  .control-group
+    = f.label :gpio_heat_number, :class => 'control-label'
+    .controls
+      = f.number_field :gpio_heat_number, :class => 'number_field'
+  .control-group
+    = f.label :temperature_slope, :class => 'control-label'
+    .controls
+      = f.text_field :temperature_slope, :class => 'text_field'
+  .control-group
+    = f.label :color, :class => 'control-label'
+    .controls
+      = f.text_field :color, :class => 'text_field'
+  .control-group
+    = f.label :gpio_light_number, :class => 'control-label'
+    .controls
+      = f.text_field :gpio_light_number, :class => 'text_field'
+  .control-group
+    = f.label :temperature_channel, :class => 'control-label'
+    .controls
+      = f.number_field :temperature_channel, :class => 'number_field'
+  .control-group
+    = f.label :light_channel, :class => 'control-label'
+    .controls
+      = f.number_field :light_channel, :class => 'number_field'
+  .control-group
+    = f.label :light_measure, :class => 'control-label'
+    .controls
+      = f.number_field :light_measure, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), rooms_path, :class => 'btn'

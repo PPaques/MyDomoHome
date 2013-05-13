@@ -11,7 +11,7 @@ default_run_options[:pty] = true
 set :default_environment, {
   'PATH' => "/home/pi/.gem/ruby/2.0.0/bin/:$PATH"
 }
-  
+
 # Application set
 set :application, "MyHome"
 set :repository,  "git@bitbucket.org:ppaques/cemapise.git"
@@ -35,7 +35,7 @@ role :app, "www.mydomohome.com"                          # This may be the same 
 role :db,  "www.mydomohome.com", :primary => true # This is where Rails migrations will run
 
 # clean up after each deploy
-after "deploy:restart",         "deploy:cleanup"
+#after "deploy:restart",         "deploy:cleanup"
 after "deploy:finalize_update", "deploy:symlink_directories_and_files"
 after "deploy:create_symlink",  "deploy:resymlink"
 after "deploy:stop", "clockwork:stop"
@@ -44,14 +44,14 @@ after "deploy:restart", "clockwork:restart"
 after 'deploy:restart', 'unicorn:reload' # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'  # app preloaded
 
- 
+
 namespace :clockwork do
   desc "Stop clockwork"
   task :stop, :roles => :app, :on_no_matching_servers => :continue do
     run "kill -TERM $(cat #{current_path}/tmp/pids/clockwork.pid)"
     run "rm #{current_path}/tmp/pids/clockwork.pid"
   end
- 
+
   desc "Start clockwork"
   task :start, :roles => :app, :on_no_matching_servers => :continue do
     run "cd #{current_path} && export RAILS_ENV=production && (nohup clockwork config/clock.rb & echo $! > #{current_path}/tmp/pids/clockwork.pid) > /dev/null 2>&1 && sleep 1", :pty => true
