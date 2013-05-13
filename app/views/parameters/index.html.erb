@@ -49,7 +49,7 @@
               <% unless @home.rooms[index].has_light? %>
                 <div class="piece">
                   <h4><%= @home.rooms[index].name %></h4>
-                  <div class="interrupteur">
+                  <div class="interrupteur exterieur">
                     <%= room.check_box :light, :class => 'check_box' %>
                     <%= room.label :light, raw('&nbsp;') %>
                   </div>
