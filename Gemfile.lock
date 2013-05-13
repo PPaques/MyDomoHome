@@ -170,6 +170,7 @@ DEPENDENCIES
   clockwork (~> 0.5.0)
   coffee-rails (~> 3.2.1)
   daemons
+  execjs
   flot-rails
   font-awesome-rails
   haml-rails

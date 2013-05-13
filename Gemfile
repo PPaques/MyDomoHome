@@ -29,6 +29,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'flot-rails'
 gem 'font-awesome-rails'
+gem 'execjs'
 
 # Deploy with Capistrano
 group :development, :test do
