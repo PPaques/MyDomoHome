@@ -99,7 +99,7 @@ class Room < ActiveRecord::Base
   end
 
   def read_light
-    if Rails.env.production? and !self.temperature_channel.blank?
+    if Rails.env.production? and self.has_light?
       self.light_measure = ((Adc.new(:channel => self.temperature_channel).read()) * LIGHT_FACTOR).to_i
       self.save
     end

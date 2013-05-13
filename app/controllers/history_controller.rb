@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class HistoryController < ApplicationController
-  caches_action :index, :getRecentJSON
+  caches_action :index, :getRecentJSON, :expires_in => 180.seconds
 
 
   def getRecentJSON
