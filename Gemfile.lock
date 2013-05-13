@@ -173,7 +173,6 @@ DEPENDENCIES
   execjs
   flot-rails
   font-awesome-rails
-  haml
   haml-rails
   i2c (~> 0.2.22)
   jquery-rails
