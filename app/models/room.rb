@@ -20,6 +20,14 @@ class Room < ActiveRecord::Base
   CONVERSION_FACTOR = 0.061050061
   LIGHT_FACTOR      = 0.024414063
 
+  def has_light?
+    if self.light_channel.blank?
+      return true
+    else
+      return false
+    end
+  end
+
   def consigne
     set = setpoints.unscoped.where("day=#{Time.now.wday} AND DATE_FORMAT(times, '%H%m') <= #{Time.now.hour}#{Time.now.min} AND room_id=#{self.id}").order("times DESC").first
     i=1
@@ -165,10 +173,12 @@ class Room < ActiveRecord::Base
   end
 
   def update_light
-    if light_measure_changed?
-      #if home.
-
-      #end
+    if light_measure_changed? and home.mode_auto?
+      if light_measure > home.light_threeshold
+        self.light = false
+      else
+        self.light = true
+      end
     end
   end
 

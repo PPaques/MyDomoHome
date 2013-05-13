@@ -8,6 +8,10 @@ class Home < ActiveRecord::Base
 
   accepts_nested_attributes_for :rooms
 
+  def mode_auto?
+    self.mode_auto
+  end
+
   def read_states
     if Rails.env.production?
       self.openings.each do |opening|
@@ -29,7 +33,7 @@ class Home < ActiveRecord::Base
 
   # ROUTINE DE REGULATION
   def update_regulation
-    if mode_auto
+    if self.mode_auto?
       consigne_hysteresis = 0.5
       # On passe en revue chaque pièce
       # Si la température est inférieure à la consigne, il faut (peut être) activer le chauffage

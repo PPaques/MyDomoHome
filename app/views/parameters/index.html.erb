@@ -1,8 +1,8 @@
-<div class="row-fluid">
-  <%= form_for @home do |f| %>
-    <div class="span12">
+<%= nested_form_for @home do |f| %>
+  <div class="row-fluid">
+    <div class="span5">
       <div class="widget">
-        <div class="widget-header"><i class="icon-bookmark"></i><h3>Maison</h3></div>
+        <div class="widget-header"><i class="icon-bookmark"></i><h3>Configuration</h3></div>
         <div class="widget-content">
           <h4>Mode automatique</h4>
             <div class="interrupteur">
@@ -15,11 +15,52 @@
               <%= number_to_percentage(@home.light_threeshold, :precision => 0) %>
             </strong>
             <div class="slider" style="width:220px">  </div>
-
-          <br />
-          <%= f.submit "Mettre à jour", :class => 'btn btn-primary' %>
-         </div>
+        </div>
+        <div class="widget-content"><%= f.submit "Mettre à jour", :class => 'btn btn-primary' %></div>
       </div>
     </div>
-  <% end %>
-</div>
+    <% unless @home.mode_auto %>
+      <div class="span2">
+          <div class="widget">
+            <div class="widget-header"><i class="icon-bookmark"></i><h3>Chauffages</h3></div>
+            <div class="widget-content">
+              <% index = 0 %>
+              <%= f.fields_for :rooms do |room| %>
+                <% unless @home.rooms[index].isoutside? %>
+                  <div class="piece">
+                    <h4><%= @home.rooms[index].name %></h4>
+                      <div class="interrupteur">
+                        <%= room.check_box :heating, :class => 'check_box' %>
+                        <%= room.label :heating, raw('&nbsp;') %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% index += 1 %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <div class="span2">
+          <div class="widget">
+            <div class="widget-header"><i class="icon-bookmark"></i><h3>Lampes</h3></div>
+            <div class="widget-content">
+              <% index = 0 %>
+              <%= f.fields_for :rooms do |room| %>
+                <% unless @home.rooms[index].has_light? %>
+                  <div class="piece">
+                    <h4><%= @home.rooms[index].name %></h4>
+                      <div class="interrupteur">
+                        <%= room.check_box :light, :class => 'check_box' %>
+                        <%= room.label :light, raw('&nbsp;') %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% index += 1 %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    <% end %>
+<% end %>

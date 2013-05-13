@@ -11,8 +11,8 @@
 									<h4><%= @home.rooms[index].name %></h4>
 									<%= "<span class=\"consigne\">#{@home.rooms[index].consigne}°C </span>".html_safe unless @home.rooms[index].isoutside? %>
 									<span class="temperature">
-										<%= @home.rooms[index].temperature %>°C 
-										
+										<%= @home.rooms[index].temperature %>°C
+
 										<%= '<i class="icon-caret-up"></i>'.html_safe if @home.rooms[index].temperature_slope == "asc" %>
 										<%= '<i class="icon-caret-down"></i>'.html_safe if @home.rooms[index].temperature_slope == "desc" %>
 										<%= '-'.html_safe if @home.rooms[index].temperature_slope == "equ" %>
@@ -29,9 +29,8 @@
 								</div>
 							  <% index += 1 %>
 							<% end  %>
-							<% if session[:user_role] < 3 %>
-							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right', :disabled => true if @home.mode_auto%>
-							<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
+							<% if session[:user_role] < 3 and !@home.mode_auto? %>
+								<%= f.submit "Mettre à jour", :class => 'btn btn-primary pull-right' unless @home.mode_auto%>
 							<% end %>
 						<% end %>
 						</div>
@@ -63,7 +62,7 @@
 				<div class="widget-content">
 					<ul class="history-home">
 						<% OpeningMeasure.last(5).reverse.each do |opening_history|	%>
-							<li><span class="label"><%= opening_history.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room label-info"><%= opening_history.opening.name %></span> <%= opening_history.opened ? "Ouvert" : "Fermé" %></li>	
+							<li><span class="label"><%= opening_history.created_at.strftime("%H:%M:%S") %></span> <span class="label label-room label-info"><%= opening_history.opening.name %></span> <%= opening_history.opened ? "Ouvert" : "Fermé" %></li>
 						<% end %>
 					</ul>
 				</div>
