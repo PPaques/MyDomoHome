@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class SetpointsController < ApplicationController
+  caches_action :index, :expires_in => 180.seconds
+
   # GET /setpoints
   # GET /setpoints.json
   def index
@@ -41,6 +43,7 @@ class SetpointsController < ApplicationController
   # POST /setpoints
   # POST /setpoints.json
   def create
+    expire_page :action => :index
     @setpoint = Setpoint.new(params[:setpoint])
 
     respond_to do |format|
@@ -57,6 +60,7 @@ class SetpointsController < ApplicationController
   # PUT /setpoints/1
   # PUT /setpoints/1.json
   def update
+    expire_page :action => :index
     @setpoint = Setpoint.find(params[:id])
 
     respond_to do |format|
@@ -74,6 +78,7 @@ class SetpointsController < ApplicationController
   # DELETE /setpoints/1
   # DELETE /setpoints/1.json
   def destroy
+    expire_page :action => :index
     @setpoint = Setpoint.find(params[:id])
     @setpoint.destroy
 
@@ -84,6 +89,8 @@ class SetpointsController < ApplicationController
   end
 
   def update_multiple
+    expire_page :action => :index
+
     setpoint_ids = []
     params[:setpoints_update].each_with_index do |(key,value),index|
      setpoint_ids.push key
