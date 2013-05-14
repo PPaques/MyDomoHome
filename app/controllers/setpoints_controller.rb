@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class SetpointsController < ApplicationController
-  caches_action :index, :expires_in => 180.seconds
+  caches_action :index
 
   # GET /setpoints
   # GET /setpoints.json
